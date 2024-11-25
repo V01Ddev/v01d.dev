@@ -26,6 +26,12 @@
   padding: 2vw;
   cursor: pointer;
 }
+.BlogPage .BlogCard h1 {
+  font-size: 1.5vw;
+}
+.BlogPage .BlogCard h2 {
+  font-size: 1vw;
+}
 .BlogPage img {
   width: 15vw;
   height: auto;

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <meta name="nerd" content="what you looking at..."/>
     <meta charset="utf-8" />
@@ -12,12 +13,19 @@ $content_dir = scandir('./content/');
 $content_dir = array_diff($content_dir, [".", "..", ".gitignore"]);
 $content_dir = array_values($content_dir);
 
-function blog_card($directory_name){
+function create_blog_card($directory_name, $img, $dis){
     $blog_card_title = str_replace("_", " ", $directory_name);
-    print_r($blog_card_title);
+
+    if ($img){
+        $img_path = "";
+        echo "<div class='BlogCard'> <img href='" . $img_path . "'><h1>" .$blog_card_title . "</h1><h2>" . $dis . "</h2></div>";
+    } else {
+        echo "<div class='BlogCard'><h1>" . $blog_card_title . "</h1><h2>" . $dis . "</h2></div>";
+    }
 }
 
-blog_card("Hello_World");
+// foreach(content_dir as dir)
+
 ?>
 
     <head>
@@ -29,6 +37,15 @@ blog_card("Hello_World");
         <section class="Blog">
             <h1>Blog</h1>
             <br />
+            <div class="BlogGallery">
+<?php
+create_blog_card("test1", False, "This is a test");
+create_blog_card("test2", False, "This is a test");
+create_blog_card("test3", False, "This is a test");
+create_blog_card("test4", False, "This is a test");
+create_blog_card("test4", False, "This is a test")
+?>
+            </div>
             <h2>still haven't written any blogs 😐</h2>
         </section>
     </div>
