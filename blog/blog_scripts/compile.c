@@ -15,27 +15,12 @@ int main(int argc, char *argv[]) {
         strcpy(filename, argv[1]);
         filename[filenameLen-2] = '\0'; // Getting rid of file type
 
-        // Getting title from filename
-        char title[strlen(filename)];
-
-        int j = 0;
-        while (j < strlen(filename)-1){
-            title[j] = filename[j];
-            j++;
-        }
-
-        for (int i=0; i<strlen(title); i++){
-            if (title[i] == '_'){
-                title[i] = ' ';
-            }
-        }
-
+        // pandoc test_blog.md --katex --template=template.html -o test_blog.html
         char cmd1[] = "pandoc "; // followed by the full filename
-        char cmd2[] = " --katex --template=template.html --metadata title='"; // Followed by the title
-        char cmd3[] = "' -o "; // followed by the filename without the 'md'
-        char cmd4[] = "html";
+        char cmd2[] = " --katex --template=template.html -o "; // Followed by the filename without the md
+        char cmd3[] = "html";
 
-        int totalSize = strlen(cmd1) + strlen(argv[1]) + strlen(cmd2) + strlen(title) + strlen(cmd3) + filenameLen + strlen(cmd4);
+        int totalSize = strlen(cmd1) + strlen(argv[1]) + strlen(cmd2) + filenameLen + strlen(cmd3);
 
         char cmd[totalSize];
         strcpy(cmd, "");
@@ -43,10 +28,8 @@ int main(int argc, char *argv[]) {
         strcat(cmd, cmd1);
         strcat(cmd, argv[1]);
         strcat(cmd, cmd2);
-        strcat(cmd, title);
-        strcat(cmd, cmd3);
         strcat(cmd, filename);
-        strcat(cmd, cmd4);
+        strcat(cmd, cmd3);
 
         if (access("template.html", F_OK) == 0) {
             printf("[*] Running: %s\n", cmd);
