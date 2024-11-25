@@ -38,15 +38,8 @@ function create_blog_card($directory_name, $img, $dis){
             <h1>Blog</h1>
             <br />
             <div class="BlogGallery">
-<?php
-create_blog_card("test1", False, "This is a test");
-create_blog_card("test2", False, "This is a test");
-create_blog_card("test3", False, "This is a test");
-create_blog_card("test4", False, "This is a test");
-create_blog_card("test4", False, "This is a test")
-?>
-            </div>
             <h2>still haven't written any blogs 😐</h2>
+            </div>
         </section>
     </div>
 </html>
