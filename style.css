@@ -4,129 +4,60 @@ html {
     color: #4AF626;
     background: rgb(25,25,25);
     background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(52,52,52,1) 50%, rgba(25,25,25,1) 100%); 
-}
-
-h3 {
+    align-content: center;
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    font-size: 8vw;
-}
-
-h6 {
-    text-align: center;
-    font-size: 5vw;
-    margin: 0 auto;
-}
-
-p {
-    font-size: 6vw;
-}
-
-a {
-    text-align: left;
-    font-family: 'Roboto Mono', monospace;
-    color: #4AF626;
-    align: center;
-    font-size: 6vw;
-}
-
-button {
-    background-color: Transparent;
-    border: none;
-    cursor:pointer;
-    outline:none;
-    width: 1vw;
 }
 
 section {
-    margin-top: 30vw;
-    margin-bottom: 100vw;
-}
-
-#home {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    margin-top: 35vh;
+    margin-bottom: 40vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-self: center;
-    padding-top: 30vw;
+    align-items: center;
 }
 
 img {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    width: 50vw;
+    width: 30vw;
 }
 
-#aboutme {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-left: 10vw;
-    padding-right: 10vw;
+.landing {
+    margin-top: 10vh;
 }
 
-#work {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 20vw;
+.work {
 }
 
 a {
-    font-size: 10vw;
+    color: #4AF626;
+    font-size: 1.5rem;
     align-self: center;
 }
 
+p {
+    text-align: center;
+}
 
-/* BIG SCREEN */
-@media screen and (min-width: 768px){
-
-    h3 {
-        font-size: 4vw;
-    }
-
-    h6 {
-        font-size: 2vw;
-    }
-
-    p {
-        font-size: 2vw;
-    }
-
-    #h69 {
-        font-size: 6vw;
-        margin-top: 0.5vw;
-        margin-bottom: 0vw;
+@media only screen and (max-device-width: 600px) {
+    html {
+        font-size: 1.3rem;
     }
 
     section {
-        margin-top: 10vw;
-        margin-bottom: 20vw;
-    }
-
-    #home {
-        padding-top: 0.1vw;
+        margin-top: 45vh;
+        margin-bottom: 40vh;
     }
 
     img {
-        width: 30vw;
+        width: 80vw;
     }
 
-    #aboutme {
-        align-self: center;
-        padding-left: 10vw;
-        padding-right: 10vw;
-    }
-
-    #work {
-        display: flex;
-        align-self: center;
-        margin-bottom: 20vw;
-        flex-direction: column;
-    }
-
-    a {
-        font-size: 4vw;
-        align-self: center;
+    .landing {
+        margin-top: 20vh;
     }
 }

@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 
 <html>
-	<meta name="nerd" content="what you looking at..."/>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
-					
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
+    <head>
+        <meta name="nerd" content="what you looking at..."/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
 
 
-	<!-- intro and logo -->
-	<section id="home">
-		<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="shortcut icon" type="image/ico" href="/logo.ico">
-
-        <img src='logo.svg', alt='logo'/>
-		<h6 id="typing"></h6>
-		</head>
-	</section>
+        <!-- intro and logo -->
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="shortcut icon" type="image/ico" href="./favicon.ico">
+        <script src="./script.js"></script>
+    </head>
 
 
-	<body>
+    <body>
+        <section class='landing'>
+            <img src='logo.svg' alt='v01d logo'/>
+            <h1 id="typing"></h6>
+        </section>
 
-		<script src="./script.js"></script>
+        <!-- About Me -->
+        <section class='aboutme'>
 
-		<!-- About Me -->
-		<section id="aboutme">
-
-			<h3>About me</h3>
+            <h2>About me</h2>
 
             <p>I am a highschool student with a strong affinity for electronics and programming.</p>
-		</section>
+        </section>
 
-		<!-- My Work-->
-		<section id='work'>
-			<h3>You can find my work on</h3>
+        <!-- My Work-->
+        <section class='work'>
+            <h2>You can find my work on</h2>
             <a href="https://github.com/V01Ddev" target="_blank">github</a>
-		</section>
-	</body>
+        </section>
+    </body>
 </html>
