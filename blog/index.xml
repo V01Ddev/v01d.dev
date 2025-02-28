@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog</title>
+    <link>https://v01d.dev/blog/</link>
+    <description>Recent content on Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Feb 2025 11:40:48 +0300</lastBuildDate>
+    <atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Esp32 Glider</title>
+      <link>https://v01d.dev/blog/esp32-glider/</link>
+      <pubDate>Thu, 27 Feb 2025 11:40:48 +0300</pubDate>
+      <guid>https://v01d.dev/blog/esp32-glider/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;&#xA;&lt;p&gt;It was a life long dream to create a plane and although you can make a glider with cheap foam board and hot glue. Controlling it was a different challenge. The cheapest available RC controller locally available to me would have cost &lt;strong&gt;no&lt;/strong&gt; less than 100 USD.&lt;/p&gt;&#xA;&lt;p&gt;I spent most of my childhood dreaming of the day I can watch my own aircraft soar while obsessing over channels such as Flitetest.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How I Made My Blog</title>
+      <link>https://v01d.dev/blog/how-i-made-my-blog/</link>
+      <pubDate>Thu, 27 Feb 2025 11:39:34 +0300</pubDate>
+      <guid>https://v01d.dev/blog/how-i-made-my-blog/</guid>
+      <description>&lt;p&gt;Using Hugo!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

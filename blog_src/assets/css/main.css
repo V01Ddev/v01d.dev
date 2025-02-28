@@ -1,0 +1,50 @@
+html {
+    scroll-behavior: smooth;
+    font-family: 'Roboto Mono', monospace;
+    color: #4AF626;
+    background: rgb(25,25,25);
+    background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(52,52,52,1) 50%, rgba(25,25,25,1) 100%); 
+    margin-left: 10vw;
+    margin-right: 10vw;
+    align-content: center;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+main {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+header h1 {
+    font-size: 4vw;
+}
+
+nav ul {
+    list-style-type: none;
+    position: fixed;
+    left: 15%;
+    top: 5%;
+}
+
+nav li {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+ul {
+    text-align: center;
+    list-style-position: inside;
+}
+
+nav a {
+    font-size: 1.8vw;
+}
+
+a {
+    color: #4AF626;
+}
+

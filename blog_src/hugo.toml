@@ -1,0 +1,9 @@
+baseURL = 'https://v01d.dev/blog'
+languageCode = 'en-us'
+title = 'Blog'
+publishDir = "../blog"
+
+[[menus.main]]
+name = 'Blog'
+pageRef = '/blog'
+weight = 10
