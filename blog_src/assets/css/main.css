@@ -3,7 +3,6 @@ html {
     font-family: 'Roboto Mono', monospace;
     color: #4AF626;
     background: rgb(25,25,25);
-    background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(52,52,52,1) 50%, rgba(25,25,25,1) 100%); 
     margin-left: 10vw;
     margin-right: 10vw;
     align-content: center;
@@ -17,6 +16,13 @@ html {
 main {
     margin-left: 10vw;
     margin-right: 10vw;
+}
+
+.summary {
+	width: 25vw;
+	font-size: 0.5rem;
+    border: double #4AF626;
+    border-radius: 10px;
 }
 
 header h1 {
