@@ -3,7 +3,6 @@ html {
     font-family: 'Roboto Mono', monospace;
     color: #4AF626;
     background: rgb(25,25,25);
-    background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(52,52,52,1) 50%, rgba(25,25,25,1) 100%); 
     margin-left: 10vw;
     margin-right: 10vw;
     align-content: center;
@@ -19,14 +18,21 @@ main {
     margin-right: 10vw;
 }
 
+.summary {
+	width: 25vw;
+	font-size: 0.5rem;
+    border: double #4AF626;
+    border-radius: 10px;
+}
+
 header h1 {
     font-size: 4vw;
 }
 
 nav ul {
     list-style-type: none;
-    position: absolute;
-    left: 25%;
+    position: fixed;
+    left: 15%;
     top: 5%;
 }
 
@@ -35,12 +41,45 @@ nav li {
     font-size: 1rem;
 }
 
-a {
-    color: #4AF626;
-}
-
 ul {
     text-align: center;
     list-style-position: inside;
 }
 
+nav a {
+    font-size: 1.8vw;
+}
+
+a {
+    color: #4AF626;
+}
+
+@media only screen and (max-device-width: 600px) {
+    html {
+        font-size: 1.7rem;
+        margin-top: 10vh;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+    main {
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+    header h1 {
+        font-size: 1.7rem;
+    }
+
+    .summary {
+        width: 95vw;
+        font-size: .75rem;
+    }
+    nav ul {
+        left: 5%;
+    }
+
+    nav a {
+        font-size: .8rem;
+    }
+}
