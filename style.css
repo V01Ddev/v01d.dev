@@ -33,6 +33,23 @@ img {
 .work {
 }
 
+nav ul {
+    list-style-type: none;
+    position: fixed;
+    left: 15%;
+    top: 5%;
+}
+
+nav li {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+
+nav a {
+    font-size: 1.8vw;
+}
+
 a {
     color: #4AF626;
     font-size: 1.5rem;
@@ -59,5 +76,13 @@ p {
 
     .landing {
         margin-top: 20vh;
+    }
+
+    nav ul {
+        left: 5%;
+    }
+
+    nav a {
+        font-size: 1rem;
     }
 }
