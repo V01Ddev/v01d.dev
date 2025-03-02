@@ -2,7 +2,7 @@
 # Used to host on local nginx for testing
 # Meant only for my nginx set up...
 
-cd blog_src/
+cd hugo_src/
 
 hugo
 
