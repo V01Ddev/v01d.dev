@@ -6,7 +6,14 @@
     <description>Recent content on Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Made My Blog</title>
+      <link>https://v01d.dev/blog/how-i-made-this-blog/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://v01d.dev/blog/how-i-made-this-blog/</guid>
+      <description>&lt;p&gt;Long story short, I made it using Hugo!&lt;/p&gt;&#xA;&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the &lt;a href=&#34;https://github.com/V01Ddev/v01d.dev/branches&#34;&gt;branches&lt;/a&gt; my site has, you&amp;rsquo;ll find a plethora of failures&amp;hellip;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

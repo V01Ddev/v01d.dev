@@ -54,6 +54,18 @@ a {
     color: #4AF626;
 }
 
+pre {
+	justify-content: center;
+	display: flex;
+}
+
+code {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #4AF626;
+    border-radius: 10px;
+}
+
 @media only screen and (max-device-width: 600px) {
     html {
         font-size: 1.7rem;
