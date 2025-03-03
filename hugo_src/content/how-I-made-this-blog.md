@@ -8,7 +8,7 @@ Long story short, I made it using Hugo!
 
 ## Backstory
 
-I've been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the [branches](https://github.com/V01Ddev/v01d.dev/branches) my site has, you'll find a plethora of failures... 
+I've been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the [branches](https://github.com/V01Ddev/v01d.dev/branches/all) my site has, you'll find a plethora of failures... 
 
 Later, learning about static site generators ignited my hope of a simple and fast way of creating content. I didn't want to abandon my simple HTML, CSS and JS to load my main page. A simple web search and a "Hugo in 100 seconds" masterclass convinced me I had found just the right thing!
 
