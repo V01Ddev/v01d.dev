@@ -34,18 +34,14 @@ The key is defining the "publishDir" to "../blog". I kept the rest of the site s
 
 As you can probably tell, I didn't use a [theme provided by Hugo](https://themes.gohugo.io/). Based on a black theme created by Hugo. I copied and manually edited the partials and defaults from the basic template into my hugo_src. 
 
-- The menu.html includes my nav bar:
+- In the menu.html I removed the default nav bar and added my basic html:
 ```
-{{- with index site.Menus $menuID }}
-  <nav>
+<nav>
     <ul>
         <li><a href='/'>Home</a></li>
         <li><a href='/blog'>Blog</a></li>
-        <!-- {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }} -->
     </ul>
-  </nav>
-{{- end }}
-
+</nav>
 ```
 
 - In \_defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:

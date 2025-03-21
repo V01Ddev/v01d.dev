@@ -60,17 +60,14 @@ weight = 10
 <h2 id="theming">Theming</h2>
 <p>As you can probably tell, I didn&rsquo;t use a <a href="https://themes.gohugo.io/">theme provided by Hugo</a>. Based on a black theme created by Hugo. I copied and manually edited the partials and defaults from the basic template into my hugo_src.</p>
 <ul>
-<li>The menu.html includes my nav bar:</li>
+<li>In the menu.html I removed the default nav bar and added my basic html:</li>
 </ul>
-<pre tabindex="0"><code>{{- with index site.Menus $menuID }}
-  &lt;nav&gt;
+<pre tabindex="0"><code>&lt;nav&gt;
     &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
-        &lt;!-- {{- partial &#34;inline/menu/walk.html&#34; (dict &#34;page&#34; $page &#34;menuEntries&#34; .) }} --&gt;
     &lt;/ul&gt;
-  &lt;/nav&gt;
-{{- end }}
+&lt;/nav&gt;
 </code></pre><ul>
 <li>In _defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:</li>
 </ul>
