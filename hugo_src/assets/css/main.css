@@ -60,10 +60,10 @@ pre {
 }
 
 code {
-    text-align: left;
-    padding: 10px;
-    border: 1px solid #4AF626;
-    border-radius: 10px;
+	text-align: left;
+	padding: 10px;
+	background-color: #222;
+	border-radius: 10px;
 }
 
 @media only screen and (max-device-width: 600px) {

@@ -28,7 +28,57 @@ pageRef = '/blog'
 weight = 10
 ```
 
-The key is defining the "publishDir" to "../blog". I kept the rest of the site simple, with only the /blog page that includes the list of content. The only major changes I then made were to the main.css, navbar and finally including the date in the summary view of the content.
+The key is defining the "publishDir" to "../blog". I kept the rest of the site simple, with only the /blog page that includes the list of content.
+
+## Theming
+
+As you can probably tell, I didn't use a [theme provided by Hugo](https://themes.gohugo.io/). Based on a black theme created by Hugo. I copied and manually edited the partials and defaults from the basic template into my hugo_src. 
+
+- In the menu.html I removed the default nav bar and added my basic html:
+```
+<nav>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+    </ul>
+</nav>
+```
+
+- In \_defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:
+```
+{{ define "main" }}
+  {{ .Content }}
+  {{ range site.RegularPages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    <div class='summary'>
+        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+        {{ $dateHuman := .Date | time.Format ":date_long" }}
+        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+
+        {{ .Summary }}
+    </div>
+    <br>
+  {{ end }}
+{{ end }}
+```
+
+
+- Finally in partials, the only change I made was to the menu.html which added my nav bar:
+```
+{{- with index site.Menus $menuID }}
+  <nav>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+        <!-- {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }} -->
+    </ul>
+  </nav>
+{{- end }}
+```
+
+I **simply** edited the main.css to style everything 👌.
+
+## Conclusion
 
 While I'm sure this isn't the best way to create the most optimized blog. This was an amazing way to get exactly what I wanted in a few hours of work over the weekend.
 

@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width">
 <title>How I Made My Blog | Blog</title>
 
-      <link rel="stylesheet" href="/blog/css/main.min.21727569bf90d2824b90338031e2d2e4ec37323cd60877a608a6ffe150896231.css" integrity="sha256-IXJ1ab&#43;Q0oJLkDOAMeLS5Ow3MjzWCHemCKb/4VCJYjE=" crossorigin="anonymous">
+      <link rel="stylesheet" href="/blog/css/main.min.4c97f738da1ae6b9bbb5689c1005c987c1f3723b853a65d6821731e54c9130a6.css" integrity="sha256-TJf3ONoa5rm7tWicEAXJh8HzcjuFOmXWghcx5UyRMKY=" crossorigin="anonymous">
 
 
 
@@ -20,13 +20,13 @@
   <header>
     <h1>Blog</h1>
 
-  <nav>
+
+<nav>
     <ul>
         <li><a href='/'>Home</a></li>
         <li><a href='/blog'>Blog</a></li>
-        
     </ul>
-  </nav>
+</nav>
 
 <hr>
 
@@ -56,7 +56,49 @@ publishDir = &#34;../blog&#34;
 name = &#39;Blog&#39;
 pageRef = &#39;/blog&#39;
 weight = 10
-</code></pre><p>The key is defining the &ldquo;publishDir&rdquo; to &ldquo;../blog&rdquo;. I kept the rest of the site simple, with only the /blog page that includes the list of content. The only major changes I then made were to the main.css, navbar and finally including the date in the summary view of the content.</p>
+</code></pre><p>The key is defining the &ldquo;publishDir&rdquo; to &ldquo;../blog&rdquo;. I kept the rest of the site simple, with only the /blog page that includes the list of content.</p>
+<h2 id="theming">Theming</h2>
+<p>As you can probably tell, I didn&rsquo;t use a <a href="https://themes.gohugo.io/">theme provided by Hugo</a>. Based on a black theme created by Hugo. I copied and manually edited the partials and defaults from the basic template into my hugo_src.</p>
+<ul>
+<li>In the menu.html I removed the default nav bar and added my basic html:</li>
+</ul>
+<pre tabindex="0"><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre><ul>
+<li>In _defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:</li>
+</ul>
+<pre tabindex="0"><code>{{ define &#34;main&#34; }}
+  {{ .Content }}
+  {{ range site.RegularPages }}
+    &lt;h2&gt;&lt;a href=&#34;{{ .RelPermalink }}&#34;&gt;{{ .LinkTitle }}&lt;/a&gt;&lt;/h2&gt;
+    &lt;div class=&#39;summary&#39;&gt;
+        {{ $dateMachine := .Date | time.Format &#34;2006-01-02T15:04:05-07:00&#34; }}
+        {{ $dateHuman := .Date | time.Format &#34;:date_long&#34; }}
+        &lt;time datetime=&#34;{{ $dateMachine }}&#34;&gt;{{ $dateHuman }}&lt;/time&gt;
+
+        {{ .Summary }}
+    &lt;/div&gt;
+    &lt;br&gt;
+  {{ end }}
+{{ end }}
+</code></pre><ul>
+<li>Finally in partials, the only change I made was to the menu.html which added my nav bar:</li>
+</ul>
+<pre tabindex="0"><code>{{- with index site.Menus $menuID }}
+  &lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;!-- {{- partial &#34;inline/menu/walk.html&#34; (dict &#34;page&#34; $page &#34;menuEntries&#34; .) }} --&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+{{- end }}
+</code></pre><p>I <strong>simply</strong> edited the main.css to style everything 👌.</p>
+<h2 id="conclusion">Conclusion</h2>
 <p>While I&rsquo;m sure this isn&rsquo;t the best way to create the most optimized blog. This was an amazing way to get exactly what I wanted in a few hours of work over the weekend.</p>
 <p>Of course, the source code to my website can be found on my <a href="https://github.com/V01Ddev/v01d.dev">GitHub</a></p>
 
