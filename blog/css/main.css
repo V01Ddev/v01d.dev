@@ -55,8 +55,8 @@ a {
 }
 
 pre {
-	justify-content: center;
-	display: flex;
+    justify-content: center;
+    display: flex;
 }
 
 code {
@@ -68,30 +68,54 @@ code {
 
 @media only screen and (max-device-width: 600px) {
     html {
-        font-size: 1.7rem;
-        margin-top: 10vh;
-        margin-left: 1vw;
-        margin-right: 1vw;
+        font-size: 1rem;
+        margin: 5vh 3vw;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     main {
-        margin-left: 1vw;
-        margin-right: 1vw;
+        margin: 0;
+        width: 100%;
+    }
+
+    nav ul {
+        left: 0;
+        top: 0;
     }
 
     header h1 {
-        font-size: 1.7rem;
+        font-size: 3rem;
     }
 
-    .summary {
-        width: 95vw;
-        font-size: .75rem;
-    }
-    nav ul {
-        left: 5%;
+    header hr {
     }
 
     nav a {
-        font-size: .8rem;
+        font-size: 1.3rem;
+    }
+
+    .summary {
+        width: 90vw;
+        font-size: 0.9rem;
+        padding: 1rem;
+        border: double #4AF626;
+        border-radius: 10px;
+        margin-bottom: 2vh;
+    }
+
+    pre {
+        width: 100%;
+        overflow-x: auto;
+        padding: 1rem 0;
+    }
+
+    code {
+        font-size: 0.85rem;
+        padding: 1rem;
+        word-wrap: break-word;
     }
 }
