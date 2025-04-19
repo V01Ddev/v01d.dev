@@ -1,6 +1,6 @@
 +++
 date = '2025-04-19'
-draft = true
+draft = false
 title = 'Powering A Flysky i6X via USB'
 +++
 
