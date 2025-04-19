@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Powering A Flysky i6X via USB | Blog</title>
+
+    <link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+
+</head>
+<body>
+  <header>
+    <h1>Blog</h1>
+
+
+<nav>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+    </ul>
+</nav>
+
+<hr>
+
+  </header>
+  <main>
+    
+  <h1>Powering A Flysky i6X via USB</h1>
+
+  
+  
+  <time datetime="2025-04-19T00:00:00&#43;00:00">April 19, 2025</time>
+
+  <hr>
+
+  <h2 id="intro">Intro</h2>
+<p>Spending money on batteries is not cool, and the Flysky i6X loves draining my cheap batteries. In the following post, I&rsquo;ll be solving a minor inconvenience with some simple &ldquo;engineering&rdquo;.</p>
+<h2 id="my-solution">My Solution</h2>
+<p>Knowing that a AA battery is 1.5V and that the Flysky takes 4 batteries in series. We can deduce that the maximum operating voltage is 6V. Looking at the <a href="https://static1.squarespace.com/static/5bc852d6b9144934c40d499c/t/5d6f66305487dc0001e34939/1567581800555/FS-i6X+User+manual+20160817.pdf">manual</a>, we find that the minimum voltage warning is at less than 4.2V. Meaning, USB&rsquo;s 5V is just at the right spot!</p>
+<p>Running a quick test, I cut the end of a USB cable and touched the exposed on ends to the last positive and last negative terminal in the battery compartment. Switching the controller on gave me a healthy and beep and everything seemed in order.</p>
+<p>I looked online for any existing solutions, I only found <a href="https://www.youtube.com/watch?v=Ln6hztrJgnc">RCwithAdam&rsquo;s video</a> where he soldered a USB cable directly to the terminals on the i6X. Being that my controller was new I didn&rsquo;t want to modify it in any way that couldn&rsquo;t be reverted to its original state.</p>
+<p>So here is my solution:</p>
+<p><img src="./images/IMG_1598.jpg" alt="Flysky_i6X_usb_adapter"></p>
+<h3 id="what-is-it">What is it?</h3>
+<p>It is a 3d printed micro USB adapter that fits perfectly in the battery compartment of the i6X. Best part is the lid is perfectly functional making it very easy to keep safe for travel.</p>
+<h2 id="how-did-i-make-it">How did I make it?</h2>
+<h3 id="parts-list">Parts list:</h3>
+<ul>
+<li>Female micro USB female breakout board.</li>
+<li>28 AWG wire, I salvaged mine from the test cable.</li>
+<li>A 3D printer, I have a borrowed 2018 Ender 3 (not the V3 💀).</li>
+</ul>
+<p>It took me 3 tries to get the 3d model just right and it takes about 20 minutes to print on the Ender 3. Print with PLA and 100% infill.</p>
+<ul>
+<li><a href="./3d_files/FlySky_i6x_adapter.FCStd">Freecad file</a></li>
+<li><a href="./3d_files/FlySky_i6x_adapter.stl">STL file</a></li>
+</ul>
+<p>The added a little solder onto the negative wire and while it still hot I bent it into a U shape. The positive wire is wrapped around the square projection multiple times. Both wires should be melted into the PLA, making sure it is kept into place.</p>
+<p>The trick with the positive projection, is to press it into the battery compartment while the plastic is still soft from melting the wire in. This insures a perfect fit and right amount of contact between the wire and terminal. Try to use as little heat as possible to avoid deformation.</p>
+<p><img src="./images/IMG_1599.jpg" alt="Flysky_i6X_usb_adapter" class="" style="width: 45%">
+
+<img src="./images/IMG_1596.jpg" alt="Flysky_i6X_usb_adapter" class="" style="width: 45%">
+</p>
+<p>The micro USB breakout board should be super glued into place. I found that hot glue is too weak to take repetitive pushing and pulling.</p>
+<p><img src="./images/IMG_1594.jpg" alt="Flysky_i6X_usb_adapter"></p>
+<p>There is no reason why you can&rsquo;t use a USB type C female breakout board. <a href="https://www.amazon.com/Cermant-Connector-Adapter-Socket-Transfer/dp/B0CB395L99/ref=sr_1_8">Like this one</a>. Additionally, you can use any 5v input as long as it has a micro USB male connector. Get a 1S battery and step it up or 2S and step it down. I have no doubt that it would allow for much longer run time.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This was a fun &ldquo;engineering&rdquo; challenge to solve a minor inconvenience and save some money in the long term. Now I get endless and uninterrupted amount of sim time on my i6X.</p>
+<p>Feel free to check out my other <a href="v01d.dev/blog">blog posts</a> or find the source code to my projects on my <a href="https://github.com/V01Ddev">GitHub</a>.</p>
+
+  
+
+
+  </main>
+  <footer>
+    <hr>
+<p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

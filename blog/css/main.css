@@ -66,6 +66,11 @@ code {
     border-radius: 10px;
 }
 
+img {
+    width: 60%;
+    height: auto;
+}
+
 @media only screen and (max-device-width: 600px) {
     html {
         font-size: 0.9rem;
@@ -121,5 +126,10 @@ code {
         word-wrap: break-word;
         white-space: pre-wrap;
         box-sizing: border-box;
+    }
+
+    img {
+        width: 80%;
+        height: auto;
     }
 }
