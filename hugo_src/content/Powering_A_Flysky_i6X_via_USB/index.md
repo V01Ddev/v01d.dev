@@ -14,9 +14,9 @@ Spending money on batteries is not cool, and the Flysky i6X loves draining my ch
 
 Knowing that a AA battery is 1.5V and that the Flysky takes 4 batteries in series. We can deduce that the maximum operating voltage is 6V. Looking at the [manual](https://static1.squarespace.com/static/5bc852d6b9144934c40d499c/t/5d6f66305487dc0001e34939/1567581800555/FS-i6X+User+manual+20160817.pdf), we find that the minimum voltage warning is at less than 4.2V. Meaning, USB's 5V is just at the right spot!
 
-Running a quick test, I cut the end of a USB cable and touched the exposed on ends to the last positive and last negative terminal in the battery compartment. Switching the controller on gave me a healthy and beep and everything seemed in order.
+Running a quick test, I cut the end of a USB cable and touched the exposed on ends to the last positive and last negative terminal in the battery compartment. Switching the controller on gave me a healthy beep and everything seemed in order.
 
-I looked online for any existing solutions, I only found [RCwithAdam's video](https://www.youtube.com/watch?v=Ln6hztrJgnc) where he soldered a USB cable directly to the terminals on the i6X. Being that my controller was new I didn't want to modify it in any way that couldn't be reverted to its original state.
+I looked online for any existing solutions and found [RCwithAdam's video](https://www.youtube.com/watch?v=Ln6hztrJgnc) where he soldered a USB cable directly to the terminals of the i6X. Being that my controller was new. I didn't want to modify it in any way that couldn't be reverted to its original state.
 
 So here is my solution:
 
@@ -39,9 +39,9 @@ It took me 3 tries to get the 3d model just right and it takes about 20 minutes 
 - [Freecad file](./3d_files/FlySky_i6x_adapter.FCStd)
 - [STL file](./3d_files/FlySky_i6x_adapter.stl)
 
-The added a little solder onto the negative wire and while it still hot I bent it into a U shape. The positive wire is wrapped around the square projection multiple times. Both wires should be melted into the PLA, making sure it is kept into place. 
+I added a little solder on the negative wire and while it is still hot I bent it into a U shape. The positive wire is wrapped around the square projection multiple times. Both wires should be melted into the PLA, making sure it is kept into place. 
 
-The trick with the positive projection, is to press it into the battery compartment while the plastic is still soft from melting the wire in. This insures a perfect fit and right amount of contact between the wire and terminal. Try to use as little heat as possible to avoid deformation.
+The trick with the positive projection, is to press it into the battery compartment while the plastic is still soft from melting embedding. This insures a perfect fit and right amount of contact between the wire and terminal. Try to use as little heat as possible to avoid deformation.
 
 {{< styledimg src="./images/IMG_1599.jpg" alt="Flysky_i6X_usb_adapter" style="width: 45%">}}
 {{< styledimg src="./images/IMG_1596.jpg" alt="Flysky_i6X_usb_adapter" style="width: 45%">}}
