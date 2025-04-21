@@ -1,0 +1,45 @@
+<style type="text/css" rel="stylesheet">
+.gallery {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-li {
+    width: 45%;
+}
+
+.gallery-div {
+    width: 100%;
+    min-width: 0;
+}
+
+.gallery-image {
+    margin: 0px;
+    width: 100%;
+}
+
+</style>
+
+
+{{ $images := split (.Get 0) "," }}
+
+<ul class='gallery'>
+    {{ range $i, $img := $images }}
+        {{ $parts := split $img "|" }}
+        {{ $url := trim (index $parts 0) " " }}
+        {{ $alt := "Gallery image" }}
+        {{ if gt (len $parts) 1 }}
+            {{ $alt = trim (index $parts 1) " " }}
+    {{ end }}
+    <li class='gallery-li'>
+        <div class="gallery-div">
+            <img src='{{ $url }}'
+                alt='{{ $alt }}'
+                class="gallery-image"
+                loading='lazy' />
+        </div>
+    </li>
+    {{ end }}
+</ul>

@@ -14,8 +14,9 @@ html {
 }
 
 main {
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    text-align: left;
 }
 
 .summary {
@@ -23,6 +24,19 @@ main {
 	font-size: 0.7rem;
     border: double #4AF626;
     border-radius: 10px;
+}
+
+main h1 {
+    text-align: center;
+}
+
+main h2 {
+    text-align: center;
+}
+
+time {
+    display: block;
+    text-align: center;
 }
 
 header h1 {
@@ -39,11 +53,6 @@ nav ul {
 nav li {
     display: inline-block;
     font-size: 1rem;
-}
-
-ul {
-    text-align: center;
-    list-style-position: inside;
 }
 
 nav a {
@@ -67,6 +76,8 @@ code {
 }
 
 img {
+    display: block;
+    margin: 0 auto;
     width: 60%;
     height: auto;
 }
@@ -79,7 +90,6 @@ img {
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
         width: 100%;
         overflow-x: hidden;
     }

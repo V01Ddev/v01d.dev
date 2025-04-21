@@ -43,9 +43,7 @@ I added a little solder on the negative wire and while it is still hot I bent it
 
 The trick with the positive projection, is to press it into the battery compartment while the plastic is still soft from melting embedding. This insures a perfect fit and right amount of contact between the wire and terminal. Try to use as little heat as possible to avoid deformation.
 
-{{< styledimg src="./images/IMG_1599.jpg" alt="Flysky_i6X_usb_adapter" style="width: 45%">}}
-{{< styledimg src="./images/IMG_1596.jpg" alt="Flysky_i6X_usb_adapter" style="width: 45%">}}
-
+{{< gallery "./images/IMG_1599.jpg|Flysky i6X usb adapter, ./images/IMG_1596.jpg|Flysky i6X usb adapter" >}}
 
 The micro USB breakout board should be super glued into place. I found that hot glue is too weak to take repetitive pushing and pulling.
 
