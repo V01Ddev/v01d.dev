@@ -10,4 +10,4 @@ weight = 10
 
 [markup]
   [markup.highlight]
-    style = 'pygments'
+    style = 'tokyonight-night'
