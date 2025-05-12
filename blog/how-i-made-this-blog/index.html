@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width">
 <title>How I Made My Blog | Blog</title>
 
-      <link rel="stylesheet" href="/blog/css/main.min.501b3f0daa9a2cfa43fc4f2fed917f8140838db90fca3dd21d8525cff08866b7.css" integrity="sha256-UBs/DaqaLPpD/E8v7ZF/gUCDjbkPyj3SHYUlz/CIZrc=" crossorigin="anonymous">
+      <link rel="stylesheet" href="/blog/css/main.min.ee50f51a2918cce3cac4079c26f5b30b954477b5941e99baaf79f43e14da23ff.css" integrity="sha256-7lD1GikYzOPKxAecJvWzC5VEd7WUHpm6r3n0PhTaI/8=" crossorigin="anonymous">
 
 
 
@@ -47,57 +47,59 @@
 <p>Later, learning about static site generators ignited my hope of a simple and fast way of creating content. I didn&rsquo;t want to abandon my simple HTML, CSS and JS to load my main page. A simple web search and a &ldquo;Hugo in 100 seconds&rdquo; masterclass convinced me I had found just the right thing!</p>
 <h2 id="unconventional-use-of-hugo">Unconventional use of Hugo</h2>
 <p>While keeping my landing page just as is, the goal was to get Hugo to compile to a /blog directory. I created a &ldquo;hugo_src/&rdquo; directory where the Hugo source code will live. I had Hugo compile to a &ldquo;../blog&rdquo; directory that can be hosted normally as my site is. This was achieved by editing the hugo.toml:</p>
-<pre tabindex="0"><code>baseURL = &#39;https://v01d.dev/blog&#39;
-languageCode = &#39;en-us&#39;
-title = &#39;Blog&#39;
-publishDir = &#34;../blog&#34;
-
-[[menus.main]]
-name = &#39;Blog&#39;
-pageRef = &#39;/blog&#39;
-weight = 10
-</code></pre><p>The key is defining the &ldquo;publishDir&rdquo; to &ldquo;../blog&rdquo;. I kept the rest of the site simple, with only the /blog page that includes the list of content.</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>baseURL <span style="color:#56b6c2">=</span> <span style="color:#cf5967">&#39;</span>https<span style="color:#56b6c2">:</span><span style="color:#3e4460">//v01d.dev/blog&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>languageCode <span style="color:#56b6c2">=</span> <span style="color:#cf5967">&#39;</span>en<span style="color:#bc74c4">-</span>us<span style="color:#cf5967">&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>title <span style="color:#56b6c2">=</span> <span style="color:#cf5967">&#39;</span>Blog<span style="color:#cf5967">&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>publishDir <span style="color:#56b6c2">=</span> <span style="color:#82cc6a">&#34;../blog&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#56b6c2">[[</span>menus<span style="color:#56b6c2">.</span>main<span style="color:#56b6c2">]]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>name <span style="color:#56b6c2">=</span> <span style="color:#cf5967">&#39;</span>Blog<span style="color:#cf5967">&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>pageRef <span style="color:#56b6c2">=</span> <span style="color:#cf5967">&#39;</span><span style="color:#bc74c4">/</span>blog<span style="color:#cf5967">&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>weight <span style="color:#56b6c2">=</span> <span style="color:#56b6c2">10</span></span></span></code></pre></div>
+<p>The key is defining the &ldquo;publishDir&rdquo; to &ldquo;../blog&rdquo;. I kept the rest of the site simple, with only the /blog page that includes the list of content.</p>
 <h2 id="theming">Theming</h2>
 <p>As you can probably tell, I didn&rsquo;t use a <a href="https://themes.gohugo.io/">theme provided by Hugo</a>. Based on a black theme created by Hugo. I copied and manually edited the partials and defaults from the basic template into my hugo_src.</p>
 <ul>
-<li>In the menu.html I removed the default nav bar and added my basic html:</li>
+<li>
+<p>In the menu.html I removed the default nav bar and added my basic html:
+<div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#56b6c2">&lt;</span><span style="color:#bc74c4">nav</span><span style="color:#56b6c2">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#56b6c2">&lt;</span><span style="color:#bc74c4">ul</span><span style="color:#56b6c2">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#56b6c2">&lt;</span><span style="color:#bc74c4">li</span><span style="color:#56b6c2">&gt;&lt;</span><span style="color:#bc74c4">a</span> <span style="color:#bc74c4">href</span><span style="color:#bc74c4">=</span><span style="color:#82cc6a">&#39;/&#39;</span><span style="color:#56b6c2">&gt;</span>Home<span style="color:#56b6c2">&lt;/</span><span style="color:#bc74c4">a</span><span style="color:#56b6c2">&gt;&lt;/</span><span style="color:#bc74c4">li</span><span style="color:#56b6c2">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        <span style="color:#56b6c2">&lt;</span><span style="color:#bc74c4">li</span><span style="color:#56b6c2">&gt;&lt;</span><span style="color:#bc74c4">a</span> <span style="color:#bc74c4">href</span><span style="color:#bc74c4">=</span><span style="color:#82cc6a">&#39;/blog&#39;</span><span style="color:#56b6c2">&gt;</span>Blog<span style="color:#56b6c2">&lt;/</span><span style="color:#bc74c4">a</span><span style="color:#56b6c2">&gt;&lt;/</span><span style="color:#bc74c4">li</span><span style="color:#56b6c2">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#56b6c2">&lt;/</span><span style="color:#bc74c4">ul</span><span style="color:#56b6c2">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#56b6c2">&lt;/</span><span style="color:#bc74c4">nav</span><span style="color:#56b6c2">&gt;</span></span></span></code></pre></div></p>
+</li>
+<li>
+<p>In _defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:
+<div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ define &#34;main&#34; }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ .Content }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ range site.RegularPages }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    &lt;h2&gt;&lt;a href=&#34;<span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ .RelPermalink }}`</span><span style="color:#7fbaf5">}}</span>&#34;&gt;<span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ .LinkTitle }}`</span><span style="color:#7fbaf5">}}</span>&lt;/a&gt;&lt;/h2&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    &lt;div class=&#39;summary&#39;&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ $dateMachine := .Date | time.Format &#34;2006-01-02T15:04:05-07:00&#34; }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ $dateHuman := .Date | time.Format &#34;:date_long&#34; }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        &lt;time datetime=&#34;<span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ $dateMachine }}`</span><span style="color:#7fbaf5">}}</span>&#34;&gt;<span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ $dateHuman }}`</span><span style="color:#7fbaf5">}}</span>&lt;/time&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ .Summary }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    &lt;/div&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    &lt;br&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ end }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{ end }}`</span><span style="color:#7fbaf5">}}</span></span></span></code></pre></div></p>
+</li>
+<li>
+<p>Finally in partials, the only change I made was to the menu.html which added my nav bar:</p>
+</li>
 </ul>
-<pre tabindex="0"><code>&lt;nav&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-</code></pre><ul>
-<li>In _defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:</li>
-</ul>
-<pre tabindex="0"><code>{{ define &#34;main&#34; }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    &lt;h2&gt;&lt;a href=&#34;{{ .RelPermalink }}&#34;&gt;{{ .LinkTitle }}&lt;/a&gt;&lt;/h2&gt;
-    &lt;div class=&#39;summary&#39;&gt;
-        {{ $dateMachine := .Date | time.Format &#34;2006-01-02T15:04:05-07:00&#34; }}
-        {{ $dateHuman := .Date | time.Format &#34;:date_long&#34; }}
-        &lt;time datetime=&#34;{{ $dateMachine }}&#34;&gt;{{ $dateHuman }}&lt;/time&gt;
-
-        {{ .Summary }}
-    &lt;/div&gt;
-    &lt;br&gt;
-  {{ end }}
-{{ end }}
-</code></pre><ul>
-<li>Finally in partials, the only change I made was to the menu.html which added my nav bar:</li>
-</ul>
-<pre tabindex="0"><code>{{- with index site.Menus $menuID }}
-  &lt;nav&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
-        &lt;!-- {{- partial &#34;inline/menu/walk.html&#34; (dict &#34;page&#34; $page &#34;menuEntries&#34; .) }} --&gt;
-    &lt;/ul&gt;
-  &lt;/nav&gt;
-{{- end }}
-</code></pre><p>I <strong>simply</strong> edited the main.css to style everything 👌.</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{- with index site.Menus $menuID }}`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  &lt;nav&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    &lt;ul&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        &lt;li&gt;&lt;a href=&#39;/blog&#39;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        <span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`&lt;!-- {{- partial &#34;inline/menu/walk.html&#34; (dict &#34;page&#34; $page &#34;menuEntries&#34; .) }} --&gt;`</span><span style="color:#7fbaf5">}}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    &lt;/ul&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>  &lt;/nav&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span><span style="color:#7fbaf5">{{</span><span style="color:#82cc6a">`{{- end }}`</span><span style="color:#7fbaf5">}}</span></span></span></code></pre></div>
+<p>I <strong>simply</strong> edited the main.css to style everything 👌.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>While I&rsquo;m sure this isn&rsquo;t the best way to create the most optimized blog. This was an amazing way to get exactly what I wanted in a few hours of work over the weekend.</p>
 <p>Of course, the source code to my website can be found on my <a href="https://github.com/V01Ddev/v01d.dev">GitHub</a></p>

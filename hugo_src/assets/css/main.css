@@ -63,18 +63,6 @@ a {
     color: #4AF626;
 }
 
-pre {
-    justify-content: center;
-    display: flex;
-}
-
-code {
-    text-align: left;
-    padding: 10px;
-    border: 1px solid #4AF626;
-    border-radius: 10px;
-}
-
 img {
     display: block;
     margin: 0 auto;
@@ -127,15 +115,11 @@ img {
         width: 100%;
         overflow-x: auto;
         padding: 1rem;
-        box-sizing: border-box;
     }
 
     code {
         font-size: 0.9rem;
         padding: 1rem;
-        word-wrap: break-word;
-        white-space: pre-wrap;
-        box-sizing: border-box;
     }
 
     img {
