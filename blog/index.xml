@@ -6,8 +6,15 @@
     <description>Recent content on Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stream Your Screen as a Webcam</title>
+      <link>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;&#xA;&lt;p&gt;Well, Microsoft Teams sucks, and it sucks even more on Linux. Now the web app was bearable until I realized it wouldn&amp;rsquo;t let me share my screen. This isn&amp;rsquo;t an isolated issue. A lot of video calling clients struggle to handle screen sharing on Linux. Discord at least manages to share the screen without audio. In this blog post, I&amp;rsquo;ll walk you through a workaround that works on all clients I tested.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Powering A Flysky i6X via USB</title>
       <link>https://v01d.dev/blog/powering_a_flysky_i6x_via_usb/</link>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Stream Your Screen as a Webcam | Blog</title>
+
+      <link rel="stylesheet" href="/blog/css/main.min.5d7642fd2dc80f41443098e1ebe5d2e0ecf80b5731d36322a7966cd6d57c4665.css" integrity="sha256-XXZC/S3ID0FEMJjh6&#43;XS4Oz4C1cx02Mip5Zs1tV8RmU=" crossorigin="anonymous">
+
+
+
+
+</head>
+<body>
+  <header>
+    <h1>Blog</h1>
+
+
+<nav>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+    </ul>
+</nav>
+
+<hr>
+
+  </header>
+  <main>
+    
+  <h1>Stream Your Screen as a Webcam</h1>
+
+  
+  
+  <time datetime="2025-05-16T00:00:00&#43;00:00">May 16, 2025</time>
+
+  <hr>
+
+  <h2 id="why">Why</h2>
+<p>Well, Microsoft Teams sucks, and it sucks even more on Linux. Now the web app was bearable until I realized it wouldn&rsquo;t let me share my screen. This isn&rsquo;t an isolated issue. A lot of video calling clients struggle to handle screen sharing on Linux. Discord at least manages to share the screen without audio. In this blog post, I&rsquo;ll walk you through a workaround that works on all clients I tested.</p>
+<h2 id="sharing-your-audio-through-your-mic">Sharing your audio through your mic</h2>
+<p>Using a patch bay or an audio routing tool. You can route a certain application&rsquo;s audio to the input of the application you&rsquo;d like to steam to. Avoid routing your output monitor to your input, as the people you&rsquo;re on call with will be able to hear themselves.</p>
+<p>I would recommend using PipeWire to handle routing and any routing/patchbay GUI applications built for it. Reference this <a href="https://wiki.archlinux.org/title/PipeWire#GUI">Arch wiki page</a> to find a application that works for you.</p>
+<h2 id="sharing-your-screen-as-a-virtual-camera">Sharing your screen as a virtual camera</h2>
+<p>This is where the fun begins. If you are less experienced with Linux, I would highly recommend using OBS and its virtual cam functionality to get started quickly. Combining it with the techniques covered, you can get full &ldquo;steaming&rdquo; functionality.</p>
+<p>Otherwise, I created a Python script to directly create a virtual camera using the <code>v4l2loopback</code> module and stream screen to the virtual camera using <code>ffmpeg</code></p>
+<h3 id="the-commands-used">The commands used</h3>
+<p>First things first, lets cover the commands that we will automate:</p>
+<ol>
+<li>
+<p>To ensure that <code>v4l2loopback</code> is loaded:
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modprobe v4l2loopback devices<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">1</span> video_nr<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">10</span> card_label<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#9ece6a">&#34;VirtualCam&#34;</span> exclusive_caps<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">1</span></span></span></code></pre></div></p>
+</li>
+<li>
+<p>We then create a virtual camera:
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo modprobe v4l2loopback devices<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">1</span> video_nr<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">10</span> card_label<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#9ece6a">&#34;VirtualCam&#34;</span> exclusive_caps<span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#e0af68">1</span></span></span></code></pre></div></p>
+</li>
+<li>
+<p>Finally we use <code>FFMPEG</code> to stream screen directly to the virtual camera:
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg -video_size 1920x1080 -framerate <span style="color:#e0af68">30</span> -f x11grab <span style="color:#7aa2f7">\
+</span></span></span><span style="display:flex;"><span><span style="color:#7aa2f7"></span>-i :0.0+0,0 -pix_fmt yuv420p -f v4l2 /dev/video10</span></span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="the-python-script">The Python script</h3>
+<p>I created a Python script to automate this process. Scripting this allows us to check weather everything is in order.</p>
+<ol>
+<li>
+<p>The modules used:
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span><span style="color:#414868;font-style:italic">#!/bin/python</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">2</span><span><span style="color:#7dcfff">import</span> <span style="color:#e0af68">shutil</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span><span style="color:#7dcfff">import</span> <span style="color:#e0af68">os</span></span></span></code></pre></div></p>
+</li>
+<li>
+<p>Some helper functions</p>
+</li>
+</ol>
+<p><div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">is_tool</span>(name):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 2</span><span>    <span style="color:#9ece6a">&#34;&#34;&#34;Check whether `name` is on PATH and marked as executable.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 3</span><span>    <span style="color:#bb9af7">return</span> shutil<span style="color:#9ece6a;font-weight:bold">.</span>which(name) <span style="color:#9ece6a;font-weight:bold">is</span> <span style="color:#9ece6a;font-weight:bold">not</span> <span style="color:#e0af68">None</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 6</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">checking_loopback</span>():
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 7</span><span>    res <span style="color:#9ece6a;font-weight:bold">=</span> os<span style="color:#9ece6a;font-weight:bold">.</span>popen(<span style="color:#9ece6a">&#34;whereis v4l2loopback&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 8</span><span>    out <span style="color:#9ece6a;font-weight:bold">=</span> res<span style="color:#9ece6a;font-weight:bold">.</span>read()<span style="color:#9ece6a;font-weight:bold">.</span>split(<span style="color:#9ece6a">&#39;:&#39;</span>)[<span style="color:#e0af68">1</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 9</span><span>    <span style="color:#bb9af7">if</span> <span style="color:#9ece6a">len</span>(out) <span style="color:#9ece6a;font-weight:bold">&gt;=</span> <span style="color:#e0af68">2</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">10</span><span>        <span style="color:#bb9af7">return</span> <span style="color:#e0af68">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">11</span><span>    <span style="color:#bb9af7">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">12</span><span>        <span style="color:#bb9af7">return</span> <span style="color:#e0af68">False</span></span></span></code></pre></div>
+<code>checking_looopback</code> specifically checks if <code>v4l2loopback</code> is available.</p>
+<ol>
+<li>The <code>main</code> function</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">main</span>():
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 2</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Please ensure v4l2loopback is installed&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 3</span><span>    <span style="color:#bb9af7">if</span> <span style="color:#9ece6a;font-weight:bold">not</span> checking_loopback():
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 4</span><span>        <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Can&#39;t find v4l2loopback&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 5</span><span>        <span style="color:#bb9af7">return</span> <span style="color:#e0af68">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 7</span><span>    <span style="color:#bb9af7">for</span> i <span style="color:#9ece6a;font-weight:bold">in</span> [<span style="color:#9ece6a">&#34;modprobe&#34;</span>, <span style="color:#9ece6a">&#34;ffmpeg&#34;</span>]:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 8</span><span>        <span style="color:#bb9af7">if</span> <span style="color:#9ece6a;font-weight:bold">not</span> is_tool(i):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 9</span><span>            <span style="color:#9ece6a">print</span>(<span style="color:#9d7cd8">f</span><span style="color:#9ece6a">&#34;Tool not found, install </span><span style="color:#9ece6a">{</span>i<span style="color:#9ece6a">}</span><span style="color:#9ece6a">&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">10</span><span>            <span style="color:#bb9af7">return</span> <span style="color:#e0af68">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">12</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Reloading v4l2loopback&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">13</span><span>    cmd <span style="color:#9ece6a;font-weight:bold">=</span> <span style="color:#9ece6a">&#34;sudo modprobe -r v4l2loopback&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">14</span><span>    <span style="color:#bb9af7">if</span> os<span style="color:#9ece6a;font-weight:bold">.</span>system(cmd) <span style="color:#9ece6a;font-weight:bold">!=</span> <span style="color:#e0af68">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">15</span><span>        <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Failed to reload v4l2loopback&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">17</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Creating virtual camera&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">18</span><span>    cmd <span style="color:#9ece6a;font-weight:bold">=</span> <span style="color:#9ece6a">&#34;&#34;&#34;sudo modprobe v4l2loopback devices=1 </span><span style="color:#7aa2f7">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">19</span><span><span style="color:#7aa2f7"></span><span style="color:#9ece6a">video_nr=10 card_label=&#34;VirtualCam&#34; exclusive_caps=1&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">20</span><span>    <span style="color:#bb9af7">if</span> os<span style="color:#9ece6a;font-weight:bold">.</span>system(cmd) <span style="color:#9ece6a;font-weight:bold">!=</span> <span style="color:#e0af68">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">21</span><span>        <span style="color:#9ece6a">print</span>(<span style="color:#9d7cd8">f</span><span style="color:#9ece6a">&#34;Failed to load module: </span><span style="color:#9ece6a">{</span>cmd<span style="color:#9ece6a">}</span><span style="color:#9ece6a">&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">23</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Running stream&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">24</span><span>    cmd <span style="color:#9ece6a;font-weight:bold">=</span> <span style="color:#9ece6a">&#34;&#34;&#34;ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab </span><span style="color:#7aa2f7">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">25</span><span><span style="color:#7aa2f7"></span><span style="color:#9ece6a">-i :0.0+0,0 -pix_fmt yuv420p -f v4l2 /dev/video10&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">26</span><span>    os<span style="color:#9ece6a;font-weight:bold">.</span>system(cmd)</span></span></code></pre></div>
+<p>The code first checks that <code>v4l2loopback</code>, <code>modprobe</code> and <code>ffmpeg</code> are installed. Then we simply run the commands to get everything set up.</p>
+<p>You can find <code>virtual_cam.py</code> <a href="https://github.com/V01Ddev/dotfiles/blob/main/scripts/virtual_cam.py">here</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As cool as this is, it is a workaround nonetheless. I hope to see developers on all platforms take a more active approach to supporting Linux. I think most applications can deal with this by relying on PipeWire being installed.</p>
+
+  
+
+
+  </main>
+  <footer>
+    <hr>
+<p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>
