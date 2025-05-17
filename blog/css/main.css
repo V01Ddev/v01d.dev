@@ -26,11 +26,14 @@ main {
     border-radius: 10px;
 }
 
-main h1 {
-    text-align: center;
+.highlight {
+    border: 2px solid whitesmoke;
+    border-radius: 6.9px;
+    background: #1a1b26;
+    padding-left: 0.5rem;
 }
 
-main h2 {
+main h1 {
     text-align: center;
 }
 
@@ -70,11 +73,6 @@ img {
     height: auto;
 }
 
-.highlight {
-    border: 2px solid whitesmoke;
-    border-radius: 6.9px;
-    background: #1a1b26;
-}
 
 @media only screen and (max-device-width: 600px) {
     html {
