@@ -44,7 +44,7 @@ As you can probably tell, I didn't use a [theme provided by Hugo](https://themes
 </nav>
 {{< /highlight >}}
 
-- In \_defaults, home.html defines the blog page. I included a summery of every post and the date that it was published:
+- In \_defaults, home.html defines the blog page. I included a summary of every post and the date that it was published:
 {{< highlight go-template "linenos=inline" >}}
 {{ define 'main' }}
   {{ .Content }}
