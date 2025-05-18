@@ -24,6 +24,7 @@ main {
 	font-size: 0.7rem;
     border: double #4AF626;
     border-radius: 10px;
+    padding-left: 1rem;
 }
 
 .summary-link {
@@ -120,11 +121,11 @@ img {
     }
 
     .highlight {
-        width: 90vw;
+        width: 70vw;
         overflow-x: auto;
         font-size: 0.9rem;
         padding: 1rem;
-        margin: 1rem 0;
+        margin: 1rem 1rem;
         box-sizing: border-box;
     }
 
