@@ -87,9 +87,7 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">14</span><span><span style="color:#414868;font-style:italic">{{</span> <span style="color:#bb9af7">end</span> <span style="color:#414868;font-style:italic">}}</span></span></span></code></pre></div></p>
 </li>
 <li>
-<p>Finally in partials, the only change I made was to the menu.html which added my nav bar:</p>
-</li>
-</ul>
+<p>Finally in partials, the only change I made was to the menu.html which added my nav bar:
 <div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span><span style="color:#414868;font-style:italic">{{-</span> <span style="color:#bb9af7">with</span> <span style="color:#bb9af7">index</span> site<span style="color:#7aa2f7">.Menus</span> $menuID <span style="color:#414868;font-style:italic">}}</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">2</span><span>  &lt;nav&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span>    &lt;ul&gt;
@@ -98,7 +96,9 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">6</span><span>        &lt;!-- <span style="color:#414868;font-style:italic">{{-</span> partial <span style="color:#9ece6a">&#34;inline/menu/walk.html&#34;</span> <span style="color:#9ece6a;font-weight:bold">(</span>dict <span style="color:#9ece6a">&#34;page&#34;</span> $page <span style="color:#9ece6a">&#34;menuEntries&#34;</span> <span style="color:#7aa2f7">.</span><span style="color:#9ece6a;font-weight:bold">)</span> <span style="color:#414868;font-style:italic">}}</span> --&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">7</span><span>    &lt;/ul&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">8</span><span>  &lt;/nav&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">9</span><span><span style="color:#414868;font-style:italic">{{-</span> <span style="color:#bb9af7">end</span> <span style="color:#414868;font-style:italic">}}</span></span></span></code></pre></div>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">9</span><span><span style="color:#414868;font-style:italic">{{-</span> <span style="color:#bb9af7">end</span> <span style="color:#414868;font-style:italic">}}</span></span></span></code></pre></div></p>
+</li>
+</ul>
 <p>I <strong>simply</strong> edited the main.css to style everything 👌.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>While I&rsquo;m sure this isn&rsquo;t the best way to create the most optimized blog. This was an amazing way to get exactly what I wanted in a few hours of work over the weekend.</p>

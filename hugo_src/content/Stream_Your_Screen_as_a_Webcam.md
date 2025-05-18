@@ -51,7 +51,6 @@ import os
 {{< /highlight >}}
 
 1. Some helper functions
-
 {{< highlight python "linenos=inline" >}}
 def is_tool(name):
     """Check whether `name` is on PATH and marked as executable."""
@@ -69,7 +68,6 @@ def checking_loopback():
 `checking_looopback` specifically checks if `v4l2loopback` is available.
 
 1. The `main` function
-
 {{< highlight python "linenos=inline" >}}
 def main():
     print("Please ensure v4l2loopback is installed")

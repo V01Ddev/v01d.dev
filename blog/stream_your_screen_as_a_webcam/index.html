@@ -76,10 +76,8 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span><span style="color:#7dcfff">import</span> <span style="color:#e0af68">os</span></span></span></code></pre></div></p>
 </li>
 <li>
-<p>Some helper functions</p>
-</li>
-</ol>
-<p><div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">is_tool</span>(name):
+<p>Some helper functions
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">is_tool</span>(name):
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 2</span><span>    <span style="color:#9ece6a">&#34;&#34;&#34;Check whether `name` is on PATH and marked as executable.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 3</span><span>    <span style="color:#bb9af7">return</span> shutil<span style="color:#9ece6a;font-weight:bold">.</span>which(name) <span style="color:#9ece6a;font-weight:bold">is</span> <span style="color:#9ece6a;font-weight:bold">not</span> <span style="color:#e0af68">None</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 4</span><span>
@@ -92,9 +90,9 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">11</span><span>    <span style="color:#bb9af7">else</span>:
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">12</span><span>        <span style="color:#bb9af7">return</span> <span style="color:#e0af68">False</span></span></span></code></pre></div>
 <code>checking_looopback</code> specifically checks if <code>v4l2loopback</code> is available.</p>
-<ol>
-<li>The <code>main</code> function</li>
-</ol>
+</li>
+<li>
+<p>The <code>main</code> function
 <div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#bb9af7">def</span> <span style="color:#7aa2f7">main</span>():
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 2</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Please ensure v4l2loopback is installed&#34;</span>)
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 3</span><span>    <span style="color:#bb9af7">if</span> <span style="color:#9ece6a;font-weight:bold">not</span> checking_loopback():
@@ -120,7 +118,9 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">23</span><span>    <span style="color:#9ece6a">print</span>(<span style="color:#9ece6a">&#34;Running stream&#34;</span>)
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">24</span><span>    cmd <span style="color:#9ece6a;font-weight:bold">=</span> <span style="color:#9ece6a">&#34;&#34;&#34;ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab </span><span style="color:#7aa2f7">\
 </span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">25</span><span><span style="color:#7aa2f7"></span><span style="color:#9ece6a">-i :0.0+0,0 -pix_fmt yuv420p -f v4l2 /dev/video10&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">26</span><span>    os<span style="color:#9ece6a;font-weight:bold">.</span>system(cmd)</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">26</span><span>    os<span style="color:#9ece6a;font-weight:bold">.</span>system(cmd)</span></span></code></pre></div></p>
+</li>
+</ol>
 <p>The code first checks that <code>v4l2loopback</code>, <code>modprobe</code> and <code>ffmpeg</code> are installed. Then we simply run the commands to get everything set up.</p>
 <p>You can find <code>virtual_cam.py</code> <a href="https://github.com/V01Ddev/dotfiles/blob/main/scripts/virtual_cam.py">here</a>.</p>
 <h2 id="conclusion">Conclusion</h2>

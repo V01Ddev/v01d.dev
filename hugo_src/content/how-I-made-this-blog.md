@@ -64,7 +64,6 @@ As you can probably tell, I didn't use a [theme provided by Hugo](https://themes
 
 
 - Finally in partials, the only change I made was to the menu.html which added my nav bar:
-
 {{< highlight go-template  "linenos=inline" >}}
 {{- with index site.Menus $menuID }}
   <nav>
