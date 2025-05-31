@@ -16,28 +16,19 @@ console.log("⣦⣈⠉⢛⠻⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛�
 console.log("⣿⣿⣿⣶⣮⣭⣁⣒⣒⣒⠂⠠⠬⠭⠭⠭⢀⣀⣠⣄⡘⠿⣿⣿⣿⣿⣿⣿⣿")
 console.log("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⢿⣿⣿⣿⣿⣿")
 
+function LogoCheck() {
+    const video = document.getElementById('logo-vid');
+    const source = document.getElementById('logo-src');
+    // Reliable Safari detection
+    // const isSafari = /^Apple/.test(navigator.vendor) && !/CriOS/.test(navigator.userAgent);
+    const isSafari = true;
 
-
-function myFunction() {
-  /* Get the text field */
-  var copyText = document.getElementById("myInput");
-
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-   /* Copy the text inside the text field */
-  navigator.clipboard.writeText(copyText.value);
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-
-  let svgLogo = document.getElementById("logo_svg");
-  console.log(svgLogo)
-
-  svgLogo.style.opacity = 1;
-} 
-
+    if (isSafari) {
+        source.src = 'logo.mp4';
+        source.type = 'video/mp4; codecs="hvc1"';
+        video.load();
+    }
+}
 
 
 var i = 0;
@@ -53,5 +44,6 @@ function typeWriter() {
 }
 
 window.onload = function() {
-  typeWriter();
+    LogoCheck();
+    typeWriter();
 };
