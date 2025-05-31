@@ -26,6 +26,10 @@ img {
     width: 30vw;
 }
 
+video {
+    width: 60vw;
+}
+
 .landing {
     margin-top: 10vh;
 }
@@ -71,6 +75,10 @@ p {
 
     img {
         width: 80vw;
+    }
+
+    video {
+        width: 100vw;
     }
 
     .landing {
