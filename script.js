@@ -20,8 +20,7 @@ function LogoCheck() {
     const video = document.getElementById('logo-vid');
     const source = document.getElementById('logo-src');
     // Reliable Safari detection
-    // const isSafari = /^Apple/.test(navigator.vendor) && !/CriOS/.test(navigator.userAgent);
-    const isSafari = true;
+    const isSafari = /^Apple/.test(navigator.vendor) && !/CriOS/.test(navigator.userAgent);
 
     if (isSafari) {
         source.src = 'logo.mp4';
