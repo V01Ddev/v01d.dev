@@ -89,14 +89,11 @@ p {
     }
 
     section {
-        margin-top: 30vh;
-        margin-bottom: 35vh;
+        min-height: 85vh;
+        margin: 0;
         padding-left: 5vw;
         padding-right: 5vw;
-    }
-
-    .landing {
-        margin-top: 20vh;
+        justify-content: center;
     }
 
     img {
