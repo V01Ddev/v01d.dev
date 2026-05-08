@@ -28,6 +28,4 @@ function typeWriter() {
     }
 }
 
-window.onload = function() {
-    typeWriter();
-};
+document.addEventListener('DOMContentLoaded', typeWriter);

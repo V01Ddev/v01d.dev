@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
-
 <head>
   <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How I Made My Blog | Blog</title>
+<meta name="description" content="Long story short, I made it using Hugo!
+Backstory I&rsquo;ve been wanting a creative outlet where I can share more details about my projects, and a blog seemed …">
 
-      <link rel="stylesheet" href="/blog/css/main.min.16a5fcab44fa12256354454d2511b9b46b54a20bd81cba683e863353b69d8e6f.css" integrity="sha256-FqX8q0T6EiVjVEVNJRG5tGtUogvYHLpoPoYzU7adjm8=" crossorigin="anonymous">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/blog/css/main.min.3c20ae0cf73d95937ab75530289c650e275e4ed477503ad55897a23435b40243.css" integrity="sha256-PCCuDPc9lZN6t1UwKJxlDideTtR3UDrVWJeiNDW0AkM=" crossorigin="anonymous">
 
 
 
@@ -18,36 +20,31 @@
 </head>
 <body>
   <header>
-    <h1>Blog</h1>
-
-
-<nav>
+    <nav>
     <ul>
         <li><a href='/'>Home</a></li>
         <li><a href='/blog'>Blog</a></li>
     </ul>
 </nav>
 
+<p class="site-name"><a href="/blog">Blog</a></p>
 <hr>
 
   </header>
   <main>
     
-  <h1>How I Made My Blog</h1>
-
+  <h1 class="post-title">How I Made My Blog</h1>
   
   
-  <time datetime="2025-02-27T00:00:00&#43;00:00">February 27, 2025</time>
-
+  <time class="post-date" datetime="2025-02-27T00:00:00&#43;00:00">February 27, 2025</time>
   <hr>
-
   <p>Long story short, I made it using Hugo!</p>
 <h2 id="backstory">Backstory</h2>
 <p>I&rsquo;ve been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the <a href="https://github.com/V01Ddev/v01d.dev/branches/all">branches</a> my site has, you&rsquo;ll find a plethora of failures&hellip;</p>
 <p>Later, learning about static site generators ignited my hope of a simple and fast way of creating content. I didn&rsquo;t want to abandon my simple HTML, CSS and JS to load my main page. A simple web search and a &ldquo;Hugo in 100 seconds&rdquo; masterclass convinced me I had found just the right thing!</p>
 <h2 id="unconventional-use-of-hugo">Unconventional use of Hugo</h2>
 <p>While keeping my landing page just as is, the goal was to get Hugo to compile to a /blog directory. I created a &ldquo;hugo_src/&rdquo; directory where the Hugo source code will live. I had Hugo compile to a &ldquo;../blog&rdquo; directory that can be hosted normally as my site is. This was achieved by editing the hugo.toml:</p>
-<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span>baseURL = <span style="color:#db4b4b">&#39;</span>https:<span style="color:#414868;font-style:italic">//v01d.dev/blog&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span>baseURL = <span style="color:#db4b4b">&#39;</span>https:<span style="color:#414868;font-style:italic">//v01d.dev/blog&#39;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">2</span><span>languageCode = <span style="color:#db4b4b">&#39;</span>en<span style="color:#9ece6a;font-weight:bold">-</span>us<span style="color:#db4b4b">&#39;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span>title = <span style="color:#db4b4b">&#39;</span>Blog<span style="color:#db4b4b">&#39;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">4</span><span>publishDir = <span style="color:#9ece6a">&#34;../blog&#34;</span>
@@ -62,7 +59,7 @@
 <ul>
 <li>
 <p>In the menu.html I removed the default nav bar and added my basic html:
-<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span>&lt;<span style="color:#bb9af7">nav</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span>&lt;<span style="color:#bb9af7">nav</span>&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">2</span><span>    &lt;<span style="color:#bb9af7">ul</span>&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span>        &lt;<span style="color:#bb9af7">li</span>&gt;&lt;<span style="color:#bb9af7">a</span> <span style="color:#7aa2f7">href</span><span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#9ece6a">&#39;/&#39;</span>&gt;Home&lt;/<span style="color:#bb9af7">a</span>&gt;&lt;/<span style="color:#bb9af7">li</span>&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">4</span><span>        &lt;<span style="color:#bb9af7">li</span>&gt;&lt;<span style="color:#bb9af7">a</span> <span style="color:#7aa2f7">href</span><span style="color:#9ece6a;font-weight:bold">=</span><span style="color:#9ece6a">&#39;/blog&#39;</span>&gt;Blog&lt;/<span style="color:#bb9af7">a</span>&gt;&lt;/<span style="color:#bb9af7">li</span>&gt;
@@ -71,7 +68,7 @@
 </li>
 <li>
 <p>In _defaults, home.html defines the blog page. I included a summary of every post and the date that it was published:
-<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#414868;font-style:italic">{{</span> <span style="color:#bb9af7">define</span> <span style="color:#db4b4b">&#39;</span>main<span style="color:#db4b4b">&#39;</span> <span style="color:#414868;font-style:italic">}}</span>
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 1</span><span><span style="color:#414868;font-style:italic">{{</span> <span style="color:#bb9af7">define</span> <span style="color:#db4b4b">&#39;</span>main<span style="color:#db4b4b">&#39;</span> <span style="color:#414868;font-style:italic">}}</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 2</span><span>  <span style="color:#414868;font-style:italic">{{</span> <span style="color:#7aa2f7">.Content</span> <span style="color:#414868;font-style:italic">}}</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 3</span><span>  <span style="color:#414868;font-style:italic">{{</span> <span style="color:#bb9af7">range</span> site<span style="color:#7aa2f7">.RegularPages</span> <span style="color:#414868;font-style:italic">}}</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6"> 4</span><span>    &lt;h2&gt;&lt;a href=&#34;<span style="color:#414868;font-style:italic">{{</span> <span style="color:#7aa2f7">.RelPermalink</span> <span style="color:#414868;font-style:italic">}}</span>&#34;&gt;<span style="color:#414868;font-style:italic">{{</span> <span style="color:#7aa2f7">.LinkTitle</span> <span style="color:#414868;font-style:italic">}}</span>&lt;/a&gt;&lt;/h2&gt;
@@ -88,7 +85,7 @@
 </li>
 <li>
 <p>Finally in partials, the only change I made was to the menu.html which added my nav bar:
-<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span><span style="color:#414868;font-style:italic">{{-</span> <span style="color:#bb9af7">with</span> <span style="color:#bb9af7">index</span> site<span style="color:#7aa2f7">.Menus</span> $menuID <span style="color:#414868;font-style:italic">}}</span>
+<div class="highlight"><pre tabindex="0" style="color:#c0caf5;background-color:#1a1b26;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go-template" data-lang="go-template"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">1</span><span><span style="color:#414868;font-style:italic">{{-</span> <span style="color:#bb9af7">with</span> <span style="color:#bb9af7">index</span> site<span style="color:#7aa2f7">.Menus</span> $menuID <span style="color:#414868;font-style:italic">}}</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">2</span><span>  &lt;nav&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">3</span><span>    &lt;ul&gt;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#a9b1d6">4</span><span>        &lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -110,7 +107,7 @@
   </main>
   <footer>
     <hr>
-<p>Copyright 2025. All rights reserved.</p>
+<p>Copyright 2026. All rights reserved.</p>
 
   </footer>
 </body>

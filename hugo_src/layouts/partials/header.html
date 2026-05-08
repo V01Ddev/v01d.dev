@@ -1,3 +1,3 @@
-<h1>{{ site.Title }}</h1>
 {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{ if .IsHome }}<h1>{{ site.Title }}</h1>{{ else }}<p class="site-name"><a href="/blog">{{ site.Title }}</a></p>{{ end }}
 <hr>

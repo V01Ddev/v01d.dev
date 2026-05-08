@@ -1,17 +1,12 @@
 {{ define "main" }}
   {{ .Content }}
   {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-
-    <a href="{{ .RelPermalink }}" class="summary-link">
-        <div class='summary'>
-            {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-            {{ $dateHuman := .Date | time.Format ":date_long" }}
-            <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-            {{ .Summary }}
-        </div>
-        </a>
-    <br>
+    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $dateHuman := .Date | time.Format ":date_long" }}
+    <a href="{{ .RelPermalink }}" class="post-card">
+      <h2>{{ .LinkTitle }}</h2>
+      <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      <div class="excerpt">{{ .Summary | plainify }}</div>
+    </a>
   {{ end }}
 {{ end }}
