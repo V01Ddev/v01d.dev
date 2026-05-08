@@ -31,7 +31,8 @@ section {
 }
 
 img {
-    max-width: 60vw;
+    max-width: 70%;
+    height: auto;
 }
 
 h1 {
