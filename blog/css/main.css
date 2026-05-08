@@ -25,12 +25,8 @@ nav ul {
     gap: 1.5rem;
 }
 
-nav li {
-    display: inline-block;
-}
-
 nav a {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     text-decoration: none;
     opacity: 0.7;
     transition: opacity 0.15s;
@@ -46,7 +42,7 @@ header {
 }
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: 3rem;
     margin: 0.8rem 0 0.4rem;
     font-weight: normal;
 }
@@ -55,6 +51,17 @@ header hr {
     border: none;
     border-top: 1px solid rgba(74, 246, 38, 0.25);
     margin: 0.8rem 0 0;
+}
+
+.site-name {
+    font-size: 1.8rem;
+    margin: 0.8rem 0 0.4rem;
+    font-weight: normal;
+}
+
+.site-name a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Blog index — post cards */
@@ -201,7 +208,7 @@ footer hr {
     }
 
     nav a {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     header h1 {
