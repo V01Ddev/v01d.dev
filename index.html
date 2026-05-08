@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="nerd" content="what you looking at...">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="shortcut icon" type="image/ico" href="./favicon.ico">
-    <script src="./script.js" defer></script>
-    <title>v01d.dev</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href='/'>Home</a></li>
-            <li><a href='./blog'>Blog</a></li>
-        </ul>
-    </nav>
+    <head>
+        <meta name="nerd" content="what you looking at...">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+        <meta property="og:title" content="v01d.dev">
+        <meta property="og:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="./logo.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="v01d.dev">
+        <meta name="twitter:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="shortcut icon" type="image/ico" href="./favicon.ico">
+        <script src="./script.js" defer></script>
+        <title>v01d.dev</title>
+    </head>
+    <body>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href='/'>Home</a></li>
+                <li><a href='./blog'>Blog</a></li>
+            </ul>
+        </nav>
 
-    <section class='landing'>
-        <img src="logo.png" alt="v01d's logo">
-        <h1 id="typing"></h1>
-    </section>
+        <section class='landing'>
+            <img src="logo.png" alt="v01d's logo">
+            <h1 id="typing" aria-label="I am v01d, welcome to my website"></h1>
+        </section>
 
-    <section class='aboutme'>
-        <h2>About me</h2>
-        <p>I am a developer with a strong affinity for electronics and programming.</p>
-    </section>
+        <section class='aboutme'>
+            <h2>About me</h2>
+            <p>I am a developer with a strong affinity for electronics and programming.</p>
+        </section>
 
-    <section class='work'>
-        <h3>You can find my work on
+        <section class='work'>
+            <p>You can find my work on
             <a href="https://github.com/V01Ddev" target="_blank">GitHub</a>
             or check out my
             <a href='./blog'>blog</a>.
-        </h3>
-    </section>
-</body>
+            </p>
+        </section>
+    </body>
 </html>
