@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Blog</title>
-    <link>https://v01d.dev/blog/</link>
-    <description>Recent content on Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 16 May 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Stream Your Screen as a Webcam</title>
-      <link>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</link>
-      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</guid>
-      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;&#xA;&lt;p&gt;Well, Microsoft Teams sucks, and it sucks even more on Linux. Now the web app was bearable until I realized it wouldn&amp;rsquo;t let me share my screen. This isn&amp;rsquo;t an isolated issue. A lot of video calling clients struggle to handle screen sharing on Linux. Discord at least manages to share the screen without audio. In this blog post, I&amp;rsquo;ll walk you through a workaround that works on all clients I tested.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Powering A Flysky i6X via USB</title>
-      <link>https://v01d.dev/blog/powering_a_flysky_i6x_via_usb/</link>
-      <pubDate>Sat, 19 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://v01d.dev/blog/powering_a_flysky_i6x_via_usb/</guid>
-      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;p&gt;Spending money on batteries is not cool, and the Flysky i6X loves draining my cheap batteries. In the following post, I&amp;rsquo;ll be solving a minor inconvenience with some simple &amp;ldquo;engineering&amp;rdquo;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;my-solution&#34;&gt;My Solution&lt;/h2&gt;&#xA;&lt;p&gt;Knowing that a AA battery is 1.5V and that the Flysky takes 4 batteries in series. We can deduce that the maximum operating voltage is 6V. Looking at the &lt;a href=&#34;https://static1.squarespace.com/static/5bc852d6b9144934c40d499c/t/5d6f66305487dc0001e34939/1567581800555/FS-i6X+User+manual+20160817.pdf&#34;&gt;manual&lt;/a&gt;, we find that the minimum voltage warning is at less than 4.2V. Meaning, USB&amp;rsquo;s 5V is just at the right spot!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How I Made My Blog</title>
-      <link>https://v01d.dev/blog/how-i-made-this-blog/</link>
-      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://v01d.dev/blog/how-i-made-this-blog/</guid>
-      <description>&lt;p&gt;Long story short, I made it using Hugo!&lt;/p&gt;&#xA;&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the &lt;a href=&#34;https://github.com/V01Ddev/v01d.dev/branches/all&#34;&gt;branches&lt;/a&gt; my site has, you&amp;rsquo;ll find a plethora of failures&amp;hellip;&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Blog</title>
+		<link>https://v01d.dev/blog/</link>
+		<description>Recent content on Blog</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 16 May 2025 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Stream Your Screen as a Webcam</title>
+				<link>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</link>
+				<pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+				<guid>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</guid>
+				<description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;&#xA;&lt;p&gt;Well, Microsoft Teams sucks, and it sucks even more on Linux. Now the web app was bearable until I realized it wouldn&amp;rsquo;t let me share my screen. This isn&amp;rsquo;t an isolated issue. A lot of video calling clients struggle to handle screen sharing on Linux. Discord at least manages to share the screen without audio. In this blog post, I&amp;rsquo;ll walk you through a workaround that works on all clients I tested.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Powering A Flysky i6X via USB</title>
+				<link>https://v01d.dev/blog/powering_a_flysky_i6x_via_usb/</link>
+				<pubDate>Sat, 19 Apr 2025 00:00:00 +0000</pubDate>
+				<guid>https://v01d.dev/blog/powering_a_flysky_i6x_via_usb/</guid>
+				<description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;p&gt;Spending money on batteries is not cool, and the Flysky i6X loves draining my cheap batteries. In the following post, I&amp;rsquo;ll be solving a minor inconvenience with some simple &amp;ldquo;engineering&amp;rdquo;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;my-solution&#34;&gt;My Solution&lt;/h2&gt;&#xA;&lt;p&gt;Knowing that a AA battery is 1.5V and that the Flysky takes 4 batteries in series. We can deduce that the maximum operating voltage is 6V. Looking at the &lt;a href=&#34;https://static1.squarespace.com/static/5bc852d6b9144934c40d499c/t/5d6f66305487dc0001e34939/1567581800555/FS-i6X+User+manual+20160817.pdf&#34;&gt;manual&lt;/a&gt;, we find that the minimum voltage warning is at less than 4.2V. Meaning, USB&amp;rsquo;s 5V is just at the right spot!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How I Made My Blog</title>
+				<link>https://v01d.dev/blog/how-i-made-this-blog/</link>
+				<pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+				<guid>https://v01d.dev/blog/how-i-made-this-blog/</guid>
+				<description>&lt;p&gt;Long story short, I made it using Hugo!&lt;/p&gt;&#xA;&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been wanting a creative outlet where I can share more details about my projects, and a blog seemed like a natural outlet. I spent a lot of time looking at what others were doing. Which led me to believe that I needed a React framework. Taking a look at all the &lt;a href=&#34;https://github.com/V01Ddev/v01d.dev/branches/all&#34;&gt;branches&lt;/a&gt; my site has, you&amp;rsquo;ll find a plethora of failures&amp;hellip;&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>
