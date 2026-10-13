@@ -12,12 +12,12 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Nav */
-nav {
+/* Nav — scoped to the header so it can't catch the contents sidebar's <nav> */
+header nav {
     padding: 1.2rem 0 0.8rem;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -25,14 +25,14 @@ nav ul {
     gap: 1.5rem;
 }
 
-nav a {
+header nav a {
     font-size: 1.3rem;
     text-decoration: none;
     opacity: 0.7;
     transition: opacity 0.15s;
 }
 
-nav a:hover {
+header nav a:hover {
     opacity: 1;
 }
 
@@ -131,6 +131,78 @@ main hr {
     margin: 0 0 1.8rem;
 }
 
+/* Post layout with sticky contents */
+body.is-post {
+    max-width: 1080px;
+}
+
+/* Only widens into two columns when the post actually has headings, so a
+   post with none keeps the plain single-column flow. */
+.post-layout.has-toc {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+}
+
+.toc {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-left: 1px solid rgba(74, 246, 38, 0.2);
+    padding-left: 1rem;
+}
+
+.toc-title {
+    margin: 0 0 0.8rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.45;
+}
+
+/* Hugo's .TableOfContents emits nested <ul>s inside a <nav> */
+#TableOfContents ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#TableOfContents > ul > li {
+    margin-bottom: 0.5rem;
+}
+
+#TableOfContents ul ul {
+    margin-top: 0.4rem;
+    padding-left: 0.9rem;
+    font-size: 0.92em;
+}
+
+.toc a {
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.15s;
+}
+
+.toc a:hover {
+    opacity: 1;
+}
+
+/* Hidden by default — the media query below turns it on for narrow screens */
+.to-top {
+    display: none;
+}
+
+/* Give jumped-to headings some air instead of pinning them to the top edge */
+main h2,
+main h3,
+main h4 {
+    scroll-margin-top: 1.5rem;
+}
+
 main h1, main h2, main h3, main h4 {
     font-weight: normal;
     margin-top: 2rem;
@@ -141,6 +213,12 @@ main p {
     line-height: 1.7;
     font-size: 0.95rem;
     margin: 0 0 1rem;
+}
+
+/* Long URLs and unbroken tokens otherwise push the page wider than the
+   screen on narrow viewports. */
+.post-body {
+    overflow-wrap: break-word;
 }
 
 main ul, main ol {
@@ -199,6 +277,51 @@ footer hr {
     border: none;
     border-top: 1px solid rgba(74, 246, 38, 0.2);
     margin-bottom: 1rem;
+}
+
+/* Below this width the contents stops being a sidebar and becomes a box at
+   the top of the post, in the same bordered style as the post cards. */
+@media only screen and (max-width: 900px) {
+    .post-layout.has-toc {
+        /* minmax(0, ...) and not 1fr: a bare 1fr track refuses to shrink below
+           the widest thing inside it, so a long line of code in a <pre> would
+           push the whole page wider than the screen. */
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+
+    .toc {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        border-left: none;
+        border: 1px solid rgba(74, 246, 38, 0.2);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+    }
+
+    /* Only shown here: on wider screens the contents is sticky and always
+       in view, so there's nothing to return to. */
+    .to-top {
+        display: block;
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 10;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+        text-decoration: none;
+        color: inherit;
+        background: rgb(18, 18, 18);
+        border: 1px solid rgba(74, 246, 38, 0.4);
+        border-radius: 8px;
+        opacity: 0.85;
+    }
+
+    .to-top:hover {
+        opacity: 1;
+        border-color: #4AF626;
+    }
 }
 
 /* Mobile */

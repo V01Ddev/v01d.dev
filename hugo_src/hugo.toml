@@ -11,3 +11,9 @@ weight = 10
 [markup]
   [markup.highlight]
     style = 'tokyonight-night'
+  # Drives the contents sidebar on every post (layouts/partials/toc.html).
+  # h2 and their h3 children only; deeper headings stay out of the sidebar.
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false

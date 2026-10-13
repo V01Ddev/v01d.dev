@@ -4,6 +4,19 @@
   {{ $dateHuman := .Date | time.Format ":date_long" }}
   <time class="post-date" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
   <hr>
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  {{/* has-toc widens the layout so the sticky contents has a column of its
+       own. Without it the post body would be pushed into the sidebar track. */}}
+  <div class="post-layout{{ if .TableOfContents }} has-toc{{ end }}">
+    {{ partial "toc.html" . }}
+    <div class="post-body">
+      {{ .Content }}
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
+  </div>
+  {{/* The contents box scrolls away with the page on mobile, where the sticky
+       sidebar isn't available, so long posts get a way back to it. `#top` is a
+       reserved fragment that resolves to the top of the document. */}}
+  {{ with .TableOfContents }}
+    <a href="#top" class="to-top" aria-label="Back to contents">↑ Contents</a>
+  {{ end }}
 {{ end }}

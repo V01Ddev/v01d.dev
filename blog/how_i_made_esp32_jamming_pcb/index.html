@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
 
-      <link rel="stylesheet" href="/blog/css/main.min.3559c9d711f80b154fd73ee4623897b4964d1374e4dc15021d4c4275f70cddb6.css" integrity="sha256-NVnJ1xH4CxVP1z7kYjiXtJZNE3Tk3BUCHUxCdfcM3bY=" crossorigin="anonymous">
+      <link rel="stylesheet" href="/blog/css/main.min.610a7b1740a76e347ed2e965a9f8180b10dc2ba379361fef52593e2d5f1585d4.css" integrity="sha256-YQp7F0CnbjR&#43;0ullqfgYCxDcK6N5Nh/vUlk&#43;LV8VhdQ=" crossorigin="anonymous">
 
 
 
@@ -20,7 +20,7 @@
 
 
 </head>
-<body>
+<body class="is-post">
   <header>
     <nav>
     <ul>
@@ -40,7 +40,40 @@
   
   <time class="post-date" datetime="2026-10-13T22:05:37&#43;03:00">October 13, 2026</time>
   <hr>
-  <h2 id="introduction">Introduction</h2>
+  
+  <div class="post-layout has-toc">
+    
+  <aside class="toc">
+    <p class="toc-title">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-goal">The Goal</a></li>
+    <li><a href="#part-1-cad-design">Part 1: CAD Design</a>
+      <ul>
+        <li><a href="#kicad-set-up">KiCad Set Up</a></li>
+        <li><a href="#designing-for-your-kitchen-not-a-fab-house">Designing For Your Kitchen, Not A Fab House</a></li>
+        <li><a href="#exporting-the-artwork">Exporting the Artwork</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-2-creation">Part 2: Creation</a>
+      <ul>
+        <li><a href="#toner-transfer">Toner Transfer</a></li>
+        <li><a href="#etching">Etching</a></li>
+        <li><a href="#drilling">Drilling</a></li>
+        <li><a href="#vias">Vias</a></li>
+        <li><a href="#soldering">Soldering</a></li>
+        <li><a href="#the-result">The Result</a></li>
+        <li><a href="#what-id-do-differently">What I&rsquo;d Do Differently</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+    <div class="post-body">
+      <h2 id="introduction">Introduction</h2>
 <p>As much as I love soldering wires onto perfboard, it quickly becomes unrealistic to maintain projects. Don&rsquo;t get me wrong, for a quick prototype it&rsquo;s fine. But try soldering three SPI components to an ESP32 and there is no way to avoid a rat&rsquo;s nest of a board.</p>
 <p>As many of our forefathers in electronics have done, we should make PCBs. With the rise of services like JLCPCB and PCBWay, most people just order them. I didn&rsquo;t, because shipping to Turkey plus the cost of a local fabrication service made no sense for a board this size.</p>
 <p>So I made it at home: toner transfer, etch, drill, solder. It turned out the fabrication <em>was</em> the project, and the board was just what it happened to produce.</p>
@@ -177,6 +210,9 @@
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
+     
+    margin: 0;
+    padding: 0;
 }
 
 .gallery-li {
@@ -293,6 +329,9 @@
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
+     
+    margin: 0;
+    padding: 0;
 }
 
 .gallery-li {
@@ -358,8 +397,14 @@
 <p>The schematic, PCB, firmware and 3D models are on <a href="https://github.com/V01Ddev/ESP32-Jammer">GitHub</a>, and the SSD1306 footprint library is <a href="https://github.com/V01Ddev/kicad-ssd1306-oled-library">here</a>. If you&rsquo;ve done home fabrication and have a better answer for via alignment or solder masks, I&rsquo;d genuinely like to hear it.</p>
 <p>Feel free to check out my other <a href="https://v01d.dev/blog">blog posts</a> or find the source code to my projects on my <a href="https://github.com/V01Ddev">GitHub</a>.</p>
 
-  
+      
 
+    </div>
+  </div>
+  
+  
+    <a href="#top" class="to-top" aria-label="Back to contents">↑ Contents</a>
+  
 
   </main>
   <footer>

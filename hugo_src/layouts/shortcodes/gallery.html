@@ -4,6 +4,10 @@
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
+    /* Without these the browser's default list padding (40px) is added on top
+       of width:100%, which pushes the gallery past the edge of the screen. */
+    margin: 0;
+    padding: 0;
 }
 
 .gallery-li {

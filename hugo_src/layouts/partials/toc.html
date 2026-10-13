@@ -1,0 +1,23 @@
+{{- /*
+Renders a sticky contents sidebar from the page's own headings.
+
+Uses Hugo's .TableOfContents, so the heading levels come from
+[markup.tableOfContents] in hugo.toml rather than from this template —
+change startLevel/endLevel there to change what appears here.
+
+The generated <nav> is wrapped in <aside class="toc"> for styling, and the
+site menu's `header nav ul` rules are scoped to the header so they can't
+flatten this list into a row. Renders nothing if the page has no headings,
+and single.html only widens the layout when this returns markup.
+
+@context {page} page The current page.
+
+@example: {{ partial "toc.html" . }}
+*/}}
+
+{{- with .TableOfContents }}
+  <aside class="toc">
+    <p class="toc-title">Contents</p>
+    {{ . }}
+  </aside>
+{{- end }}
