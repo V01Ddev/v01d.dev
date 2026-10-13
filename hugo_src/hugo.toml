@@ -8,6 +8,15 @@ name = 'Blog'
 pageRef = '/blog'
 weight = 10
 
+[params]
+# Used for og:site_name. site.Title is "Blog", which is too generic to appear
+# in a social card.
+siteName = 'v01d.dev'
+# Default social card for every page. Lives at the domain root, not under
+# /blog, so it is spelled out rather than derived from baseURL. Override per
+# post with an `images` array in frontmatter.
+ogImage = 'https://v01d.dev/og.png'
+
 [markup]
   [markup.highlight]
     style = 'tokyonight-night'

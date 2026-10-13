@@ -27,6 +27,15 @@ section {
     margin-top: 15vh;
 }
 
+/* The logo SVG has a small intrinsic size (~378px), so the global max-width
+   never engaged and it rendered at its natural size. Give it a real width,
+   capped in rem so the 10vw section padding can't blow it up on wide screens
+   and bounded by 100% so it can never overflow a narrow one. */
+.landing img {
+    width: 23rem;
+    max-width: 100%;
+}
+
 img {
     max-width: 70%;
     height: auto;
@@ -83,6 +92,32 @@ p {
     font-size: 1.3rem;
 }
 
+/* Terminal block: the skills section reads as a shell session. Sized in rem
+   against html's 1.4rem so it sits a step below the page's giant body text.
+   Lines wrap rather than scroll: a skills list you have to drag sideways to
+   read is worse than one whose columns fall out of alignment on a phone. */
+.terminal {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1.1rem 1.3rem;
+    text-align: left;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: rgba(74, 246, 38, 0.78);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(74, 246, 38, 0.2);
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.terminal .cmd {
+    color: #4AF626;
+}
+
 @media only screen and (max-width: 600px) {
     html {
         font-size: 1rem;
@@ -96,8 +131,10 @@ p {
         justify-content: center;
     }
 
+    /* 100% rather than 100vw: vw includes the scrollbar, so a full-width
+       image ends up wider than the content box and the page scrolls sideways. */
     img {
-        max-width: 100vw;
+        max-width: 100%;
     }
 
     nav {
@@ -107,5 +144,10 @@ p {
 
     nav a {
         font-size: 1rem;
+    }
+
+    .terminal {
+        font-size: 0.9rem;
+        padding: 0.9rem 1rem;
     }
 }

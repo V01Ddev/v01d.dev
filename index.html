@@ -10,36 +10,36 @@
         <meta name="theme-color" content="#121212">
 
         <!-- Open Graph. The image URL must be absolute: scrapers do not resolve
-             relative paths, so a relative one silently yields no preview. -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://v01d.dev/">
-        <meta property="og:site_name" content="v01d.dev">
-        <meta property="og:title" content="v01d.dev">
-        <meta property="og:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
-        <meta property="og:image" content="https://v01d.dev/og.png">
-        <meta property="og:image:type" content="image/png">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
-        <meta property="og:locale" content="en_US">
+            relative paths, so a relative one silently yields no preview. -->
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://v01d.dev/">
+            <meta property="og:site_name" content="v01d.dev">
+            <meta property="og:title" content="v01d.dev">
+            <meta property="og:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+            <meta property="og:image" content="https://v01d.dev/og.png">
+            <meta property="og:image:type" content="image/png">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+            <meta property="og:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
+            <meta property="og:locale" content="en_US">
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="v01d.dev">
-        <meta name="twitter:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
-        <meta name="twitter:image" content="https://v01d.dev/og.png">
-        <meta name="twitter:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="v01d.dev">
+            <meta name="twitter:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+            <meta name="twitter:image" content="https://v01d.dev/og.png">
+            <meta name="twitter:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="./style.css">
-        <link rel="shortcut icon" type="image/ico" href="./favicon.ico">
-        <script src="./script.js" defer></script>
-        <script data-goatcounter="https://v01d.goatcounter.com/count"
-                async src="//gc.zgo.at/count.js"></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="./style.css">
+            <link rel="shortcut icon" type="image/ico" href="./favicon.ico">
+            <script src="./script.js" defer></script>
+            <script data-goatcounter="https://v01d.goatcounter.com/count"
+                    async src="//gc.zgo.at/count.js"></script>
 
-        <script type="application/ld+json">
-        {
+            <script type="application/ld+json">
+                {
           "@context": "https://schema.org",
           "@graph": [
             {
@@ -61,7 +61,7 @@
             }
           ]
         }
-        </script>
+            </script>
     </head>
     <body>
         <nav aria-label="Main navigation">
@@ -72,23 +72,45 @@
         </nav>
 
         <section class='landing'>
-            <img src="logo.png" alt="v01d's logo">
+            <img src="logo.svg" alt="v01d's logo">
             <!-- Text is in the markup so crawlers and no-JS visitors see a
-                 populated <h1>; script.js clears it before typing it back out. -->
-            <h1 id="typing" aria-label="I am v01d, welcome to my website">I am v01d, welcome to my website</h1>
+                populated <h1>; script.js clears it before typing it back out. -->
+                    <h1 id="typing" aria-label="I am v01d, welcome to my website">I am v01d, welcome to my website</h1>
         </section>
 
         <section class='aboutme'>
             <h2>About me</h2>
-            <p>I am a developer with a strong affinity for electronics and programming.</p>
+            <p>I am a developer with a strong affinity for electronics and programming.
+            I design circuit boards in KiCad, etch, drill and solder them at home,
+            and write the firmware that runs on them.</p>
+            <p>The other half is software: fourteen months building backends for
+            production AI systems.</p>
         </section>
 
-        <section class='work'>
-            <p>You can find my work on
-            <a href="https://github.com/V01Ddev" target="_blank" rel="me noopener">GitHub</a>
-            or check out my
-            <a href='./blog'>blog</a>.
-            </p>
+        <section class='skills'>
+            <h2>What I work with</h2>
+            <pre class='terminal'><span class='cmd'>$ whoami</span>
+v01d: embedded systems, PCB design, RF
+
+<span class='cmd'>$ ls ~/skills</span>
+hardware/  embedded/  radio/  software/
+
+<span class='cmd'>$ cat ~/skills/*.txt</span>
+hardware   PCB design · home fabrication · soldering · 3D printing
+embedded   ESP32 · ESP8266 · C/C++ · SPI · I²C · UART · PWM
+radio      nRF24L01 · ESP-NOW · ExpressLRS · Bluetooth/BLE
+software   Python · Go · Azure · Docker · Linux
+
+<span class='cmd'>$ ls ~/selected</span>
+esp32-jammer/  flight-telemetry/  fpv-quadcopter/  rc-aircraft/
+
+<span class='cmd'>$ cat ~/selected/esp32-jammer</span>
+Two-layer KiCad board, etched and drilled at home, and it works.
+<a href='./blog/how_i_made_esp32_jamming_pcb/'>read the write-up →</a>
+
+<span class='cmd'>$ cat ~/links</span>
+<a href='https://github.com/V01Ddev' target='_blank' rel='me noopener'>github.com/V01Ddev</a>  →  code
+<a href='./blog'>v01d.dev/blog</a>  →  write-ups</pre>
         </section>
     </body>
 </html>

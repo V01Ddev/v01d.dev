@@ -1,9 +1,42 @@
+{{- $siteName := or site.Params.siteName site.Title -}}
+{{- $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) -}}
+{{- $ogTitle := cond .IsHome $siteName .Title -}}
+{{- $description := "" -}}
+{{- with .Description }}{{ $description = . }}
+{{- else }}{{ with .Summary }}{{ $description = . | plainify | truncate 160 }}{{ end }}{{ end -}}
+{{- $ogImage := site.Params.ogImage -}}
+{{- with .Params.images }}{{ $ogImage = index . 0 | absURL }}{{ end -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-{{ with .Description }}<meta name="description" content="{{ . }}">
-{{ else }}{{ with .Summary }}<meta name="description" content="{{ . | plainify | truncate 160 }}">
-{{ end }}{{ end }}
+<title>{{ $title }}</title>
+{{ with $description }}<meta name="description" content="{{ . }}">
+{{ end }}<link rel="canonical" href="{{ .Permalink }}">
+<meta name="theme-color" content="#121212">
+
+<!-- Open Graph. og:image must be absolute; scrapers do not resolve relative
+     paths. It defaults to the site card and can be overridden per post with
+     an `images` array in frontmatter. -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ $siteName }}">
+<meta property="og:title" content="{{ $ogTitle }}">
+{{ with $description }}<meta property="og:description" content="{{ . }}">
+{{ end }}<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $ogTitle }}">
+<meta property="og:locale" content="en_US">
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $ogTitle }}">
+{{ with $description }}<meta name="twitter:description" content="{{ . }}">
+{{ end }}<meta name="twitter:image" content="{{ $ogImage }}">
+<meta name="twitter:image:alt" content="{{ $ogTitle }}">
+
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,3 +44,38 @@
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
 {{ partialCached "head/analytics.html" . }}
+
+{{- /* The JSON is hand-written and each value is piped through jsonify, so
+       titles and summaries containing quotes or angle brackets are escaped
+       correctly. jsonify on a whole dict double-encodes under this Hugo
+       version, which produces a JSON string instead of an object. */ -}}
+{{- if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ $description | jsonify }},
+  "datePublished": {{ (.Date.Format "2006-01-02T15:04:05Z07:00") | jsonify }},
+  "dateModified": {{ (.Lastmod.Format "2006-01-02T15:04:05Z07:00") | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ .Permalink | jsonify }} },
+  "image": {{ $ogImage | jsonify }},
+  "inLanguage": "en",
+  "author": { "@type": "Person", "name": "v01d", "url": "https://v01d.dev/" },
+  "publisher": { "@type": "Person", "name": "v01d", "url": "https://v01d.dev/" }
+}
+</script>
+{{- else }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": {{ $siteName | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "description": {{ $description | jsonify }},
+  "inLanguage": "en",
+  "author": { "@type": "Person", "name": "v01d", "url": "https://v01d.dev/" }
+}
+</script>
+{{- end }}
