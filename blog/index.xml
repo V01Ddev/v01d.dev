@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Fri, 16 May 2025 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Tue, 13 Oct 2026 22:05:37 +0300</lastBuildDate>
 		
 			<atom:link href="https://v01d.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>How I Made an ESP32 Jamming PCB</title>
+				<link>https://v01d.dev/blog/how_i_made_esp32_jamming_pcb/</link>
+				<pubDate>Tue, 13 Oct 2026 22:05:37 +0300</pubDate>
+				<guid>https://v01d.dev/blog/how_i_made_esp32_jamming_pcb/</guid>
+				<description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;As much as I love soldering wires onto perfboard, it quickly becomes unrealistic to maintain projects. Don&amp;rsquo;t get me wrong, for a quick prototype it&amp;rsquo;s fine. But try soldering three SPI components to an ESP32 and there is no way to avoid a rat&amp;rsquo;s nest of a board.&lt;/p&gt;&#xA;&lt;p&gt;As many of our forefathers in electronics have done, we should make PCBs. With the rise of services like JLCPCB and PCBWay, most people just order them. I didn&amp;rsquo;t, because shipping to Turkey plus the cost of a local fabrication service made no sense for a board this size.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Stream Your Screen as a Webcam</title>
 				<link>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</link>

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How I Made a ESP32 Jamming PCB | Blog</title>
-<meta name="description" content="Introduction As much as I love solder wires manually onto perfboard. It quickly becomes unrealistic to maintain projects. Don&rsquo;t get me wrong, a quick …">
+<title>How I Made an ESP32 Jamming PCB | Blog</title>
+<meta name="description" content="Introduction As much as I love soldering wires onto perfboard, it quickly becomes unrealistic to maintain projects. Don&rsquo;t get me wrong, for a quick …">
 
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/blog/css/main.css">
+      <link rel="stylesheet" href="/blog/css/main.min.3559c9d711f80b154fd73ee4623897b4964d1374e4dc15021d4c4275f70cddb6.css" integrity="sha256-NVnJ1xH4CxVP1z7kYjiXtJZNE3Tk3BUCHUxCdfcM3bY=" crossorigin="anonymous">
 
 
+
+<script data-goatcounter="https://v01d.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 
 </head>
@@ -32,18 +35,328 @@
   </header>
   <main>
     
-  <h1 class="post-title">How I Made a ESP32 Jamming PCB</h1>
+  <h1 class="post-title">How I Made an ESP32 Jamming PCB</h1>
   
   
-  <time class="post-date" datetime="2026-08-20T22:05:37&#43;03:00">August 20, 2026</time>
+  <time class="post-date" datetime="2026-10-13T22:05:37&#43;03:00">October 13, 2026</time>
   <hr>
   <h2 id="introduction">Introduction</h2>
-<p>As much as I love solder wires manually onto perfboard. It quickly becomes unrealistic to maintain projects. Don&rsquo;t get me wrong, a quick prototype is fine. But try try soldering 3 SPI components to an ESP and there is no way of avoiding a rats nest of a board.</p>
+<p>As much as I love soldering wires onto perfboard, it quickly becomes unrealistic to maintain projects. Don&rsquo;t get me wrong, for a quick prototype it&rsquo;s fine. But try soldering three SPI components to an ESP32 and there is no way to avoid a rat&rsquo;s nest of a board.</p>
+<p>As many of our forefathers in electronics have done, we should make PCBs. With the rise of services like JLCPCB and PCBWay, most people just order them. I didn&rsquo;t, because shipping to Turkey plus the cost of a local fabrication service made no sense for a board this size.</p>
+<p>So I made it at home: toner transfer, etch, drill, solder. It turned out the fabrication <em>was</em> the project, and the board was just what it happened to produce.</p>
 <h2 id="the-goal">The Goal</h2>
-<p>My main objective was to recreate the ESP32 + NRF24 jamming board from <a href="https://github.com/EmenstaNougat/ESP32-BlueJammer">EmenstaNougat</a> at home. With full support for their firmware in addition to allowing me to use known working hardware to develop my own jamming software <strong>for educational purposes strictly!</strong> Of course.</p>
-<h1 id="part-1-cad-design">Part 1: CAD Design</h1>
-<h2 id="kicad-set-up">KiCad Set Up</h2>
-<h1 id="part-2-creation">Part 2: Creation</h1>
+<p>My main objective was to recreate the ESP32 + nRF24 jamming board from <a href="https://github.com/EmenstaNougat/ESP32-BlueJammer">EmenstaNougat</a> at home. Two nRF24L01+PA+LNA modules, each on its own SPI bus so both radios run independently, an SSD1306 OLED for status, and an ESP32 DevKit V1 driving all of it.</p>
+<p>I wanted the hardware to be fully compatible with the upstream firmware, so the software side was already solved for me. My work was the schematic, the layout, and the fabrication. I went in wanting to learn how a board actually gets made, and I came out knowing a lot more about why boards are designed the way they are.</p>
+<blockquote>
+<p><strong>A note on legality:</strong> deliberately disrupting radio communications is illegal in most jurisdictions. This is a bench project for learning how 2.4 GHz protocols behave, and it should only ever be powered up in an environment you own or have written permission to test in.</p>
+</blockquote>
+<h2 id="part-1-cad-design">Part 1: CAD Design</h2>
+<h3 id="kicad-set-up">KiCad Set Up</h3>
+<p>The schematic is the easy part, and it&rsquo;s no different from any other project. Nothing about making the board at home changes it.</p>
+<p>You draw what you&rsquo;d otherwise wire by hand. Two nRF24L01+PA+LNA modules on separate SPI buses, so they can sweep independently:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Bus</th>
+					<th>SCK</th>
+					<th>MISO</th>
+					<th>MOSI</th>
+					<th>CSN</th>
+					<th>CE</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>HSPI</td>
+					<td>14</td>
+					<td>12</td>
+					<td>13</td>
+					<td>15</td>
+					<td>16</td>
+			</tr>
+			<tr>
+					<td>VSPI</td>
+					<td>18</td>
+					<td>19</td>
+					<td>23</td>
+					<td>21</td>
+					<td>22</td>
+			</tr>
+	</tbody>
+</table>
+<p>An SSD1306 OLED on I2C (GPIO 4 and 5), and a 100 µF electrolytic capacitor across the supply of each radio. Those capacitors are not optional. The nRF24L01+PA+LNA draws current in sharp bursts when it transmits, and without bulk capacitance right at the module it browns out and drops off the bus mid-sweep.</p>
+<p>The real work in the schematic was the <strong>footprints</strong>. None of the parts I was using exist in the stock KiCad libraries:</p>
+<ul>
+<li>The ESP32 DevKit V1 module, with its two rows of pins at the right spacing.</li>
+<li>The nRF24L01+PA+LNA breakout, which is a module with an 8-pin header, not a chip.</li>
+<li>The SSD1306 OLED. I couldn&rsquo;t find a version that worked in a current KiCad, so I made one, and <a href="https://github.com/V01Ddev/kicad-ssd1306-oled-library">published it as a library</a> afterwards. It&rsquo;s the same footprint that ended up on this board.</li>
+</ul>
+<p>Drawing footprints is tedious, but you only do it once and then you own it forever.</p>
+<h3 id="designing-for-your-kitchen-not-a-fab-house">Designing For Your Kitchen, Not A Fab House</h3>
+<p>This is the part that actually matters, and it&rsquo;s the part no KiCad tutorial covers, because every tutorial assumes you&rsquo;re going to email the files to a fabrication house.</p>
+<p>A fab house does three things for you that you cannot do at home:</p>
+<ul>
+<li><strong>Plated through-holes.</strong> On a professional board, every pad has copper plated through the barrel of the hole, so the top and bottom of a pad are the same piece of metal. At home there is no plating. A hole is just a hole, and the top and bottom copper are only connected if you connect them.</li>
+<li><strong>Vias.</strong> A via is a plated hole that connects one layer to another. Same problem, and this board needs ten of them even after I reworked it to need as few as possible.</li>
+<li><strong>Solder mask.</strong> The green stuff. It&rsquo;s a lacquer that covers everything except the pads you&rsquo;re meant to solder to. Without it, every trace on your board is a place solder can end up.</li>
+</ul>
+<p>So designing for home fabrication is mostly about designing around not having those three things.</p>
+<h4 id="vias-become-wires">Vias become wires</h4>
+<p>Here&rsquo;s the thing I didn&rsquo;t understand until I&rsquo;d already finished the first layout: <strong>every through-hole pad on a professional board is plated</strong>, and plating is what joins the top copper to the bottom copper. At home, nothing joins them. A pad with a hole in it is a hole in two separate sheets of copper that happen to be lined up.</p>
+<p>So a via on a home-made board isn&rsquo;t a routing convenience, it&rsquo;s an instruction to yourself: <em>solder a wire here.</em> That&rsquo;s exactly what my commit says:</p>
+<blockquote>
+<p>added VIAs to schmatics to connect front layer and back layer when making it at home</p>
+</blockquote>
+<p>Fourteen of them, in one go. Then the sizes, which is where the real lesson is. KiCad&rsquo;s default via came out at <strong>0.6 mm with a 0.3 mm hole</strong>, and I put fourteen of those into the layout because that&rsquo;s what the tool gave me. There is no version of me drilling a 0.3 mm hole by hand, let alone threading wire through it.</p>
+<p>So they grew:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Revision</th>
+					<th>Via pad</th>
+					<th>Hole</th>
+					<th>Count</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>First pass</td>
+					<td>0.6 mm</td>
+					<td>0.3 mm</td>
+					<td>14</td>
+			</tr>
+			<tr>
+					<td>Enlarged</td>
+					<td>1.2 mm</td>
+					<td>0.8 mm</td>
+					<td>14</td>
+			</tr>
+			<tr>
+					<td>Working board</td>
+					<td>1.8 mm</td>
+					<td>1.0 mm</td>
+					<td>16</td>
+			</tr>
+			<tr>
+					<td>Final, compact</td>
+					<td>1.8 mm</td>
+					<td>0.5 mm</td>
+					<td>10</td>
+			</tr>
+	</tbody>
+</table>
+<p>The 1.2 mm revision is where the 0.8 mm shows up, and that&rsquo;s not a coincidence. That&rsquo;s the size of the only drill bit I own. A via you can actually see, drill, and get wire through is worth ten miniature ones you can&rsquo;t.</p>
+<p>The final board is down to 10 vias, and that&rsquo;s the real win. Enlarging them made each one survivable; redesigning so there were fewer of them made the board buildable.</p>
+<h4 id="two-layers-cost-you-twice">Two layers cost you twice</h4>
+<p>My first layout was two layers, and I was unhappy about it from the schematic onwards:</p>
+<blockquote>
+<p>had to be double sided&hellip; Not that happy with it but it should work</p>
+</blockquote>
+<p>Then, once I&rsquo;d finished routing it:</p>
+<blockquote>
+<p>Finished PCB. Dumb move to make it two layer. Nearly impossible to make at home&hellip;</p>
+</blockquote>
+<p>Two layers doesn&rsquo;t just double the etching. It means every net that needs to cross another net costs you a via. It means the front artwork and the back artwork have to line up with each other, hole for hole, and at home you&rsquo;re aligning them by eye against a light source. And it means you have to keep the board in the etchant twice as long overall, so the risk of over-etching doubles with it.</p>
+<p><img src="./images/rf-transfer.jpg" alt="V1 artwork transferred onto the copper"></p>
+<p>This is what V1 looked like with the toner transferred and before anything was etched. The artwork is the toner; the shiny copper around it is what&rsquo;s about to be eaten away. That board was 58.5 × 107.5 mm.</p>
+<h4 id="clearances-and-trace-widths">Clearances and trace widths</h4>
+<p>Without a solder mask, the gap between two traces is the only thing stopping a solder bridge. So I left more space than KiCad&rsquo;s defaults, both for my own sake when soldering and because a home-etched board under-cuts slightly. The etchant doesn&rsquo;t just eat downwards, it creeps sideways under the edges of the toner, so every trace comes out a little thinner and every gap a little wider than you drew it.</p>
+<p>That cuts both ways. Thin traces are the first thing to fail, because they&rsquo;re the first thing to disappear entirely if you leave the board in too long. Nothing on this board is carrying real current, so I could afford to keep everything chunky.</p>
+<h4 id="alignment">Alignment</h4>
+<p>To connect the two layers you have to drill through both, and the front pad has to be sitting on top of the back pad when you do it. If the two artworks are out of register, you&rsquo;re drilling through the gap between pads rather than through the pad, and the wire has nothing to solder to on one side.</p>
+<p>I added centering lines to the artwork for this, which helped, but the commit says what I actually thought of it:</p>
+<blockquote>
+<p>added centering lines, still need to find a better method</p>
+</blockquote>
+<p>What I found works best is this. Poke a hole through the printed paper where a hole should be made, at two different locations, on both the front and back sheets, making sure you&rsquo;re poking the same two holes in each. Then drill through the PCB using one side as a reference. Now align the holes in the paper with the holes in the PCB and hold everything down with Kapton tape. Make sure the drilled holes are clean so the paper sits flush.</p>
+<h3 id="exporting-the-artwork">Exporting the Artwork</h3>
+<p>Once the board is done and DRC is clean, you plot the copper layers. Not gerbers, because gerbers are for a fab house. You want something you can put through a laser printer, so I exported the front and back copper as SVGs at A4.</p>
+<style type="text/css" rel="stylesheet">
+.gallery {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-li {
+    width: 45%;
+}
+
+.gallery-div {
+    width: 100%;
+    min-width: 0;
+}
+
+.gallery-image {
+    margin: 0px;
+    width: 100%;
+}
+
+</style>
+
+
+
+
+<ul class='gallery'>
+    
+        
+        
+        
+        
+            
+    
+    <li class='gallery-li'>
+        <div class="gallery-div">
+            <img src='./images/rf-fcu.png'
+                alt='Front copper layer — the etch artwork'
+                class="gallery-image"
+                loading='lazy' />
+        </div>
+    </li>
+    
+        
+        
+        
+        
+            
+    
+    <li class='gallery-li'>
+        <div class="gallery-div">
+            <img src='./images/rf-bcu.png'
+                alt='Back copper layer — the etch artwork'
+                class="gallery-image"
+                loading='lazy' />
+        </div>
+    </li>
+    
+</ul>
+
+<p>Two things to get right here. <strong>Mirror the front layer, not the back.</strong> KiCad already flips the back layer when it plots it, so the B.Cu artwork comes out ready to press straight onto the copper. The front is the one you have to reverse yourself. And print at exactly 100% scale, not &ldquo;fit to page&rdquo;, or your 2.54 mm header pitch won&rsquo;t be 2.54 mm and nothing will fit.</p>
+<h2 id="part-2-creation">Part 2: Creation</h2>
+<h3 id="toner-transfer">Toner Transfer</h3>
+<p>Laser printer toner is plastic. It melts, and when it cools it sticks to whatever it cooled onto. So if you print your artwork in toner, press it onto clean copper while it&rsquo;s hot, and then dissolve the paper away, you&rsquo;re left with a plastic resist bonded to the copper in exactly the shape of your traces. That&rsquo;s the whole idea.</p>
+<p>The details that matter:</p>
+<p><strong>Clean the copper properly.</strong> I go over the board with 120 grit sandpaper until the copper has a nice polish, then wipe it down with acetone or isopropyl. After that, don&rsquo;t touch the surface with your fingers. Skin oil is the enemy, and toner will not stick where you&rsquo;ve left a fingerprint.</p>
+<p><strong>Print onto magazine paper.</strong> I use cheap magazine paper cut down to A4. It releases the toner cleanly and it costs nothing next to proper transfer paper. Whatever you use, it has to go through a laser printer. Inkjet will not work at all, this has to be toner.</p>
+<p><strong>Use a laminator, not an iron.</strong> An iron works, but it&rsquo;s a flat plate you&rsquo;re pressing by hand, so the pressure is uneven and one side of the board always gets more heat than the other. A laminator gives you consistent heat and consistent roller pressure across the whole board.</p>
+<p>I use the cheapest A3 laminator I could find on <a href="https://www.trendyol.com/kraf/a3-laminasyon-makinesi-lm-1015-mavi-p-822959166?merchantId=856626">Trendyol</a>, and I didn&rsquo;t need to modify it at all. It gets more than hot enough in about 3 passes. After that I do a lot more passes, feeding the board in from a different point and a different direction each time, so the pressure lands everywhere rather than in the same two tracks.</p>
+<p>Then let it cool completely before you touch it. Peel a corner to check, and if the toner is lifting anywhere, press it back down and run it through again.</p>
+<p>Soak the board in water for a few minutes and rub the paper off with your thumb. What&rsquo;s left is your board in black plastic. Anywhere the toner didn&rsquo;t take, touch it up with a permanent marker. Marker ink resists etchant well enough, and it&rsquo;s much faster than redoing the transfer.</p>
+<h3 id="etching">Etching</h3>
+<p>The toner is the resist. Everywhere it sits, the copper stays. Everywhere it doesn&rsquo;t, the copper has to go.</p>
+<p>I mixed my own etchant out of what I could buy locally:</p>
+<ul>
+<li><strong>Hydrochloric acid</strong>, sold as <em>tuz ruhu</em> in any hardware store, for cleaning drains and grout. The 30% strength.</li>
+<li><strong>Hydrogen peroxide</strong>, sold as <em>oksijenli su</em> in any pharmacy. The 50% strength, not the 3% you&rsquo;d disinfect a cut with.</li>
+<li><strong>Water.</strong></li>
+</ul>
+<p>The mix is <strong>4 parts water, 2 parts acid, 1 part peroxide</strong>. Together, that etches copper in a few minutes at room temperature. And because it&rsquo;s transparent, you can watch the copper disappear through the side of the container, which is genuinely useful when you&rsquo;re learning how long it takes.</p>
+<p><strong>The safety here is not optional.</strong> This mixture fumes, and the fumes are not something you want in a flat. Do it outdoors or somewhere with real ventilation, never in a closed room. I wear a <a href="https://www.trendyol.com/3m/6200-gaz-maskesi-standart-beden-6059-abek1-filtre-dahil-set-p-65913687?merchantId=556149">3M 6200 half mask</a> with the ABEK1 cartridges it comes with, plus gloves and eye protection. Add the acid to the water and not the other way around. Use a glass or plastic container, never metal. And when you&rsquo;re done, the spent solution has dissolved copper in it, so it is toxic waste. Bottle it and take it to a disposal point. Do not pour it down the sink.</p>
+<p>I&rsquo;ve since switched to <strong>ferric chloride</strong>, which I buy as a powder from Trendyol and mix myself. It&rsquo;s less unpleasant to work with: no acid fumes, and it keeps. The trade-offs are that it stains anything it touches permanently, it&rsquo;s opaque so you can&rsquo;t watch the board, and it works much better warm. It&rsquo;s still not something you pour down a drain.</p>
+<p>Whichever you use, warm it up and agitate the container. Both of those speed it up dramatically, and faster etching means less sideways creep under the toner. Take the board out the moment the last bit of bare copper is gone. Over-etching is how you lose thin traces and how your carefully-spaced gaps turn into canyons.</p>
+<p>Then clean the toner off with acetone, and what&rsquo;s left is copper traces on FR4.</p>
+<h3 id="drilling">Drilling</h3>
+<p>First I cut the board down to size with a Dremel and a cutting bit. FR4 is glass fibre, so the dust is not something you want to breathe. I added a particle filter to the same 3M mask for this, along with eye protection.</p>
+<p>For the holes themselves, I use a small <a href="https://www.robotistan.com/mini-drill-6-18v-dc-pcb-matkabi-mini-el-matkabi-quantum">mini drill</a> mounted in a <a href="https://www.robotistan.com/mini-drill-standi-el-matkabi-sehpasi-343">drill stand</a>. Mine didn&rsquo;t come with a power supply, so I wired it to a 12 V adapter I had lying around.</p>
+<p>The stand matters much more than the drill. A 0.8 mm bit is thin enough to wander across the copper and snap before it bites, and doing it freehand means you&rsquo;ll be lucky to hit your pad, let alone keep the hole perpendicular so the wire goes through. In a stand, the bit goes where you put it and the hole goes straight down. You could put a much worse drill in a decent stand and get a better result than the other way around.</p>
+<p>I use a single 0.8 mm bit from Bauhaus for everything. Keeping to one size means I&rsquo;m not swapping bits and I&rsquo;m not breaking the small ones by handling them. Worth doing afterwards: twist a slightly larger bit through each hole by hand to knock the burr off the back, because a burr can lift the copper pad it came through.</p>
+<h3 id="vias">Vias</h3>
+<p>This is where V1 went. Not the etching, not the drilling, the vias.</p>
+<p>A via is a hole through both layers with a wire soldered on each side. The wire I use is enamelled copper wire, the thin stuff wound into motor and transformer coils. It&rsquo;s the right choice for two reasons: it&rsquo;s thin enough to pass through a 0.8 mm hole, and it&rsquo;s insulated, so it can&rsquo;t short against anything it passes near on the way through. The enamel burns back wherever the iron touches it, so you get a clean joint without stripping anything first, though how well that works depends on the wire. Some enamels need scraping.</p>
+<p>The process is simple and the execution is not:</p>
+<ol>
+<li>Thread a short piece of wire through the hole.</li>
+<li>Solder it down on one side.</li>
+<li>Flip the board over.</li>
+<li>Solder it on the other side.</li>
+<li>Trim the excess flush.</li>
+</ol>
+<p>The gauge doesn&rsquo;t really matter. What matters is that it goes through the hole and stays stiff enough to push through without folding.</p>
+<p>The hard part is step 1, and it&rsquo;s hard because of alignment. The hole you drilled has to land inside the pad on <em>both</em> layers, and if the front and back artwork were even slightly out of register when you transferred them, it won&rsquo;t. This is what the centering lines were for, and it&rsquo;s why V1 was mostly spent on this rather than on anything else. If there&rsquo;s one thing I&rsquo;d tell someone starting out, it&rsquo;s to design as few vias as you possibly can and make the ones you keep as large as you can get away with.</p>
+<h3 id="soldering">Soldering</h3>
+<p>Everything here is through-hole, which is the forgiving end of soldering. But there&rsquo;s no solder mask, so every trace on the board is a surface solder is happy to flow onto. Bridges are the failure mode, and on a board with a ground pour, a bridge to the pour is the one that&rsquo;s easiest to make and hardest to see.</p>
+<p>A few things that made it manageable:</p>
+<ul>
+<li><strong>Flux is doing most of the work.</strong> A little flux on the joint makes the solder flow where you want it and stay there.</li>
+<li><strong>Tack one pin first.</strong> Solder a single corner pin, check the module sits flat and square, and only then do the rest. If it&rsquo;s crooked you only have one joint to reflow.</li>
+<li><strong>Headers instead of soldering modules directly.</strong> The nRF24L01 modules are the parts most likely to die, and it&rsquo;s much nicer to swap one than to desolder it.</li>
+<li><strong>Check as you go.</strong> Go over the board with a multimeter looking for continuity between adjacent pins before you power anything up.</li>
+</ul>
+<p>I dropped the status LED along the way. The OLED already tells you which mode you&rsquo;re in, and the LED was one more thing to solder and one more thing to get wrong.</p>
+<h3 id="the-result">The Result</h3>
+<p><img src="./images/rf-etched.jpg" alt="V2 after etching and soldering, before cutting it down to size"></p>
+<p>This is the second revision after etching and soldering, before I cut it down to its final size. V2 is 64.14 × 77.47 mm with 10 vias, down from 107.5 mm long and 23 vias at the worst point of the first design. It&rsquo;s not so much a smaller board as a board that&rsquo;s aware of how it&rsquo;s going to be made.</p>
+<style type="text/css" rel="stylesheet">
+.gallery {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-li {
+    width: 45%;
+}
+
+.gallery-div {
+    width: 100%;
+    min-width: 0;
+}
+
+.gallery-image {
+    margin: 0px;
+    width: 100%;
+}
+
+</style>
+
+
+
+
+<ul class='gallery'>
+    
+        
+        
+        
+        
+            
+    
+    <li class='gallery-li'>
+        <div class="gallery-div">
+            <img src='./images/rf-board.jpg'
+                alt='V1 finished and assembled'
+                class="gallery-image"
+                loading='lazy' />
+        </div>
+    </li>
+    
+        
+        
+        
+        
+            
+    
+    <li class='gallery-li'>
+        <div class="gallery-div">
+            <img src='./images/rf-final.jpg'
+                alt='The board running — OLED showing the active mode'
+                class="gallery-image"
+                loading='lazy' />
+        </div>
+    </li>
+    
+</ul>
+
+<p>V1 with everything mounted: the ESP32 sits on the back of the board, both nRF24L01+PA+LNA modules are on top with their antennas, and the OLED shows which mode is active. I also modelled and printed a set of <a href="https://github.com/V01Ddev/ESP32-Jammer">stands</a> in FreeCAD to hold the radios and the screen in place.</p>
+<h3 id="what-id-do-differently">What I&rsquo;d Do Differently</h3>
+<p><strong>Design for the process from the beginning.</strong> My first revision was drawn like a board that was going to be manufactured, and it was nearly impossible to produce. I redesigned the vias, respun it, and it worked, but that whole first pass was a lesson in designing for the wrong factory.</p>
+<p><strong>Fewer vias, bigger vias.</strong> Every via is a hole, a wire, and two joints you have to get right. The 0.6 mm default in KiCad looks small and innocent on screen and is invisible in real life.</p>
+<p><strong>I still want a solder mask.</strong> This is the open problem. There&rsquo;s no practical way to do a proper mask at home, so the copper is bare and every joint is a chance to bridge. I&rsquo;ve been looking into conformal coating instead: it won&rsquo;t stop you bridging while you solder, but it does protect the finished board from oxidation and from anything shorting against it later.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>This project started because I wanted a board that wasn&rsquo;t a rat&rsquo;s nest, and it ended up being about the fabrication. Home PCB making is slower, messier, and far more failure-prone than uploading gerbers and waiting a week. But now I understand why boards are laid out the way they are, why vias are placed where they are, and how much a solder mask is quietly doing for you. Those things were invisible to me before I had to live without them.</p>
+<p>The schematic, PCB, firmware and 3D models are on <a href="https://github.com/V01Ddev/ESP32-Jammer">GitHub</a>, and the SSD1306 footprint library is <a href="https://github.com/V01Ddev/kicad-ssd1306-oled-library">here</a>. If you&rsquo;ve done home fabrication and have a better answer for via alignment or solder masks, I&rsquo;d genuinely like to hear it.</p>
+<p>Feel free to check out my other <a href="https://v01d.dev/blog">blog posts</a> or find the source code to my projects on my <a href="https://github.com/V01Ddev">GitHub</a>.</p>
 
   
 

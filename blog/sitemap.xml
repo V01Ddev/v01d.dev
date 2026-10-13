@@ -3,7 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://v01d.dev/blog/</loc>
-    <lastmod>2025-05-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-13T22:05:37+03:00</lastmod>
+  </url><url>
+    <loc>https://v01d.dev/blog/how_i_made_esp32_jamming_pcb/</loc>
+    <lastmod>2026-10-13T22:05:37+03:00</lastmod>
   </url><url>
     <loc>https://v01d.dev/blog/stream_your_screen_as_a_webcam/</loc>
     <lastmod>2025-05-16T00:00:00+00:00</lastmod>
