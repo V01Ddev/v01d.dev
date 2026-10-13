@@ -21,4 +21,9 @@ function typeWriter() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', typeWriter);
+// The <h1> ships with this text already in it, so crawlers and no-JS visitors
+// get a real heading instead of an empty one. Clear it and type it back out.
+// This script is deferred, so the DOM is already parsed here — no need to wait
+// for DOMContentLoaded, which would let the full text flash on screen first.
+el.textContent = "";
+typeWriter();

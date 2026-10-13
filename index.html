@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="nerd" content="what you looking at...">
         <meta charset="utf-8">
+        <meta name="nerd" content="what you looking at...">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>v01d.dev | Electronics and Programming</title>
         <meta name="description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+        <link rel="canonical" href="https://v01d.dev/">
+        <meta name="theme-color" content="#121212">
+
+        <!-- Open Graph. The image URL must be absolute: scrapers do not resolve
+             relative paths, so a relative one silently yields no preview. -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://v01d.dev/">
+        <meta property="og:site_name" content="v01d.dev">
         <meta property="og:title" content="v01d.dev">
         <meta property="og:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
-        <meta property="og:type" content="website">
-        <meta property="og:image" content="./logo.png">
+        <meta property="og:image" content="https://v01d.dev/og.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
+        <meta property="og:locale" content="en_US">
+
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="v01d.dev">
         <meta name="twitter:description" content="v01d.dev — developer with a strong affinity for electronics and programming.">
+        <meta name="twitter:image" content="https://v01d.dev/og.png">
+        <meta name="twitter:image:alt" content="v01d.dev, with the slashed-circle v01d logo">
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
@@ -20,7 +37,31 @@
         <script src="./script.js" defer></script>
         <script data-goatcounter="https://v01d.goatcounter.com/count"
                 async src="//gc.zgo.at/count.js"></script>
-        <title>v01d.dev</title>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://v01d.dev/#person",
+              "name": "v01d",
+              "url": "https://v01d.dev/",
+              "description": "Developer with a strong affinity for electronics and programming.",
+              "sameAs": ["https://github.com/V01Ddev"]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://v01d.dev/#website",
+              "url": "https://v01d.dev/",
+              "name": "v01d.dev",
+              "description": "Developer with a strong affinity for electronics and programming.",
+              "inLanguage": "en",
+              "publisher": { "@id": "https://v01d.dev/#person" }
+            }
+          ]
+        }
+        </script>
     </head>
     <body>
         <nav aria-label="Main navigation">
@@ -32,7 +73,9 @@
 
         <section class='landing'>
             <img src="logo.png" alt="v01d's logo">
-            <h1 id="typing" aria-label="I am v01d, welcome to my website"></h1>
+            <!-- Text is in the markup so crawlers and no-JS visitors see a
+                 populated <h1>; script.js clears it before typing it back out. -->
+            <h1 id="typing" aria-label="I am v01d, welcome to my website">I am v01d, welcome to my website</h1>
         </section>
 
         <section class='aboutme'>
@@ -42,7 +85,7 @@
 
         <section class='work'>
             <p>You can find my work on
-            <a href="https://github.com/V01Ddev" target="_blank">GitHub</a>
+            <a href="https://github.com/V01Ddev" target="_blank" rel="me noopener">GitHub</a>
             or check out my
             <a href='./blog'>blog</a>.
             </p>

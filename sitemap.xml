@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for the hand-written pages at the domain root.
+
+  Blog URLs are deliberately NOT listed here: Hugo regenerates
+  /blog/sitemap.xml on every build, so post URLs and their lastmod dates stay
+  accurate without anyone maintaining this file. Both sitemaps are declared in
+  /robots.txt.
+
+  Add a <url> entry here whenever a new root-level page is created.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://v01d.dev/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
