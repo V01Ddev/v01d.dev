@@ -115,7 +115,7 @@ What I found works best is this. Poke a hole through the printed paper where a h
 
 Once the board is done and DRC is clean, you plot the copper layers. Not gerbers, because gerbers are for a fab house. You want something you can put through a laser printer, so I exported the front and back copper as SVGs at A4.
 
-{{< gallery "./images/rf-fcu.png|Front copper layer — the etch artwork, ./images/rf-bcu.png|Back copper layer — the etch artwork" >}}
+{{< gallery "./images/rf-fcu.png|Front copper layer: the etch artwork, ./images/rf-bcu.png|Back copper layer: the etch artwork" >}}
 
 Two things to get right here. **Mirror the front layer, not the back.** KiCad already flips the back layer when it plots it, so the B.Cu artwork comes out ready to press straight onto the copper. The front is the one you have to reverse yourself. And print at exactly 100% scale, not "fit to page", or your 2.54 mm header pitch won't be 2.54 mm and nothing will fit.
 
@@ -206,7 +206,7 @@ I dropped the status LED along the way. The OLED already tells you which mode yo
 
 This is the second revision after etching and soldering, before I cut it down to its final size. V2 is 64.14 × 77.47 mm with 10 vias, down from 107.5 mm long and 23 vias at the worst point of the first design. It's not so much a smaller board as a board that's aware of how it's going to be made.
 
-{{< gallery "./images/rf-board.jpg|V1 finished and assembled, ./images/rf-final.jpg|The board running — OLED showing the active mode" >}}
+{{< gallery "./images/rf-board.jpg|V1 finished and assembled, ./images/rf-final.jpg|The board running: OLED showing the active mode" >}}
 
 V1 with everything mounted: the ESP32 sits on the back of the board, both nRF24L01+PA+LNA modules are on top with their antennas, and the OLED shows which mode is active. I also modelled and printed a set of [stands](https://github.com/V01Ddev/ESP32-Jammer) in FreeCAD to hold the radios and the screen in place.
 
