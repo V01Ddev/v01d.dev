@@ -191,9 +191,28 @@ body.is-post {
     opacity: 1;
 }
 
-/* Hidden by default — the media query below turns it on for narrow screens */
+/* Back to top. Shown at every width: the sticky contents lets you jump
+   between sections but not out of a long post, so there is something to
+   return to on wide screens too. Only rendered on posts that have a TOC. */
 .to-top {
-    display: none;
+    display: block;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    background: rgb(18, 18, 18);
+    border: 1px solid rgba(74, 246, 38, 0.4);
+    border-radius: 8px;
+    opacity: 0.85;
+}
+
+.to-top:hover {
+    opacity: 1;
+    border-color: #4AF626;
 }
 
 /* Give jumped-to headings some air instead of pinning them to the top edge */
@@ -342,24 +361,6 @@ footer hr {
         padding: 1rem 1.2rem;
     }
 
-    /* Only shown here: on wider screens the contents is sticky and always
-       in view, so there's nothing to return to. */
-    .to-top {
-        display: block;
-        position: fixed;
-        right: 1rem;
-        bottom: 1rem;
-        z-index: 10;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.75rem;
-        text-decoration: none;
-        color: inherit;
-        background: rgb(18, 18, 18);
-        border: 1px solid rgba(74, 246, 38, 0.4);
-        border-radius: 8px;
-        opacity: 0.85;
-    }
-
     /* A six-column table cannot fit a phone at full size, and letting it
        push the page sideways is worse than letting it scroll inside its own
        box. display:block gives the table a scroll container of its own; the
@@ -373,11 +374,6 @@ footer hr {
     main th,
     main td {
         padding: 0.35rem 0.5rem;
-    }
-
-    .to-top:hover {
-        opacity: 1;
-        border-color: #4AF626;
     }
 }
 
