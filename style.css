@@ -31,7 +31,7 @@ section {
    global img rules: max-width 70% on desktop, 100% under 600px. */
 
 img {
-    max-width: 70%;
+    max-width: 90%;
     height: auto;
 }
 
@@ -128,7 +128,7 @@ p {
     /* 100% rather than 100vw: vw includes the scrollbar, so a full-width
        image ends up wider than the content box and the page scrolls sideways. */
     img {
-        max-width: 100%;
+        max-width: 140%;
     }
 
     nav {
