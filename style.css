@@ -27,14 +27,8 @@ section {
     margin-top: 15vh;
 }
 
-/* The logo SVG has a small intrinsic size (~378px), so the global max-width
-   never engaged and it rendered at its natural size. Give it a real width,
-   capped in rem so the 10vw section padding can't blow it up on wide screens
-   and bounded by 100% so it can never overflow a narrow one. */
-.landing img {
-    width: 23rem;
-    max-width: 100%;
-}
+/* The hero is logo.png, a 1920x1080 animated PNG (61 frames), so it takes the
+   global img rules: max-width 70% on desktop, 100% under 600px. */
 
 img {
     max-width: 70%;
