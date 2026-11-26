@@ -1,0 +1,5 @@
+# Hugo build lock file
+*.hugo_build.lock
+
+# Hugo generated assets cache
+resources/_gen/
