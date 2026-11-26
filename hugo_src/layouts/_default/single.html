@@ -2,7 +2,12 @@
   <h1 class="post-title">{{ .Title }}</h1>
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
   {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time class="post-date" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <div class="post-date">
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    {{- /* Only shown when a post sets `lastmod` in its front matter. Without
+           it, Lastmod falls back to Date and this stays hidden. */ -}}
+    {{ if gt .Lastmod .Date }} · Updated <time datetime="{{ .Lastmod | time.Format "2006-01-02T15:04:05-07:00" }}">{{ .Lastmod | time.Format ":date_long" }}</time>{{ end }}
+  </div>
   <hr>
   {{/* has-toc widens the layout so the sticky contents has a column of its
        own. Without it the post body would be pushed into the sidebar track. */}}
