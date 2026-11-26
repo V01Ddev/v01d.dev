@@ -1,0 +1,4 @@
+# Used by `hugo server` only (it runs in the development environment; plain
+# `hugo` runs in production). Without this the server writes its pages, with
+# localhost URLs and drafts, into ../blog, the folder that gets deployed.
+publishDir = 'public'

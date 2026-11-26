@@ -3,3 +3,6 @@
 
 # Hugo generated assets cache
 resources/_gen/
+
+# Output of `hugo server` (see hugo_src/config/development/hugo.toml)
+hugo_src/public/
